@@ -1,11 +1,8 @@
 [(Français)](#le-nom-du-projet)
 
-## Name of the project
+## UN-PML-Pilot
 
-- What is this project?
-- How does it work?
-- Who will use this project?
-- What is the goal of this project?
+This is a repo for the UN Private Machine Learning pilot project.
 
 ### How to Contribute
 
