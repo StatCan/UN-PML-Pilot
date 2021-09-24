@@ -54,6 +54,7 @@ def load_data() -> Tuple[torch.utils.data.DataLoader, torch.utils.data.DataLoade
     #    print(f"No data dir specified - {err}")
     
     if not os.path.isdir('data'):
+        # check if file was deflated
         if not os.path.isfile('har-data.zip'):
             # we have to download the data
             urllib.request.urlretrieve("https://archive.ics.uci.edu/ml/machine-learning-databases/00240/UCI%20HAR%20Dataset.zip", filename="har-data.zip")
