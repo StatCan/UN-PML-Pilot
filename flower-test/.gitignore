@@ -1,0 +1,11 @@
+# .gitignore 
+
+# Ignore all files in this dir...
+*
+
+# Except for these...
+!.gitignore
+!plain-avg
+!README.md
+!flower-test-1.gif
+

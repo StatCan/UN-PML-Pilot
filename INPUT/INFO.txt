@@ -1,0 +1,5 @@
+Due to the dimension of the dataset has not been possible to upload it on github.
+
+To download the original dataset: 
+- http://archive.ics.uci.edu/ml/machine-learning-databases/00240/
+- UCI HAR Dataset.zip

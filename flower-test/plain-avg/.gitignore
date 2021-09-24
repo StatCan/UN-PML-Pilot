@@ -1,0 +1,12 @@
+# .gitignore 
+
+# Ignore all files in this dir...
+*
+
+# Except for these...
+!.gitignore
+!har.py
+!server.py
+!har-client1.ipynb
+!har-client.py
+
