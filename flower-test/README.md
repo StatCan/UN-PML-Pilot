@@ -26,7 +26,7 @@ Please make sure that conda and git are installed.
         cd flower-test/plain-avg
 4. Export environment variable for servername and port and launch client 
 
-        HAR_SERVER=[::]:8080 python server.py
+        export HAR_SERVER=[::]:8080 python server.py
         
 ## Client instructions
 Please make sure that conda and git are installed.
