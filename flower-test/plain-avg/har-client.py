@@ -74,9 +74,11 @@ class HARClient(fl.client.NumPyClient):
 
 def main() -> None:
     """Load data, start CifarClient."""
-
+    # Paths to data
+    TEST_PATH = os.environ["TEST_PATH"]
+    TRAIN_PATH = os.environ["TRAIN_PATH"]
     # Load data
-    trainloader, testloader = har.load_data()
+    trainloader, testloader = har.load_data(test_path=TEST_PATH, train_path=TRAIN_PATH)
 
     # Load model
     model = har.NeuralNetwork().to(DEVICE).train()
