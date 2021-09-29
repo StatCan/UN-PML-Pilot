@@ -24,7 +24,7 @@ Please make sure that conda and git are installed.
 4. Change dir
 
         cd flower-test/plain-avg
-4. Export environment variable for servername and port and launch client 
+4. Export environment variable for servername and port and launch server 
 
         export HAR_SERVER=[::]:8080 python server.py
         
@@ -67,7 +67,7 @@ Please make sure that conda and git are installed.
         cd flower-test/plain-avg
 4. Export environment variable for servername and port and launch client 
         
-        HAR_SERVER=localhost:8080 python har-client.py
+        HAR_SERVER=localhost:8080 TEST_PATH=path_to_test_dataset TRAIN_PATH=path_to_train_datasetpython har-client.py
 6. Because we need another client to start and finish the training, repeat steps 4-5 in another shell.
 
 ### Second test

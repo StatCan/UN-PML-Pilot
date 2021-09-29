@@ -46,36 +46,47 @@ model = NeuralNetwork().to(device)
 print(model)
 
 
-def load_data() -> Tuple[torch.utils.data.DataLoader, torch.utils.data.DataLoader]:
+def load_data(test_path: str = None, train_path: str = None) -> Tuple[torch.utils.data.DataLoader, torch.utils.data.DataLoader]:
     #try:
     #    print('Data dir: ', os.environ['HAR_DATA_DIR'])
     #    har_data_dir = DATA_ROOT+"{}".format(os.environ['HAR_DATA_DIR'])
     #except KeyError as err:
     #    print(f"No data dir specified - {err}")
+
+    if test_path and train_path:
+        trainingset = pd.read_csv(train_path, delimiter = ';')
+        testset = pd.read_csv(test_path, delimiter = ';')
+
+        X_train = pd.concat([trainingset[str(i)] for i in range(561)], axis = 1)
+        y_train = trainingset['Y'] - 1
+
+        X_test = pd.concat([testset[str(i)] for i in range(561)], axis = 1)
+        y_test = testset['Y'] - 1
     
-    if not os.path.isdir('data'):
+    else:
+        if not os.path.isdir('data'):
         # check if file was deflated
-        if not os.path.isfile('har-data.zip'):
-            # we have to download the data
-            urllib.request.urlretrieve("https://archive.ics.uci.edu/ml/machine-learning-databases/00240/UCI%20HAR%20Dataset.zip", filename="har-data.zip")
+            if not os.path.isfile('har-data.zip'):
+                # we have to download the data
+                urllib.request.urlretrieve("https://archive.ics.uci.edu/ml/machine-learning-databases/00240/UCI%20HAR%20Dataset.zip", filename="har-data.zip")
 
-        # unzip it
-        with zipfile.ZipFile("har-data.zip","r") as zip_ref:
-            zip_ref.extractall('.', members=['UCI HAR Dataset/train/X_train.txt',
-                                             'UCI HAR Dataset/train/y_train.txt',
-                                             'UCI HAR Dataset/test/X_test.txt',
-                                             'UCI HAR Dataset/test/y_test.txt',])
+            # unzip it
+            with zipfile.ZipFile("har-data.zip","r") as zip_ref:
+                zip_ref.extractall('.', members=['UCI HAR Dataset/train/X_train.txt',
+                                                'UCI HAR Dataset/train/y_train.txt',
+                                                'UCI HAR Dataset/test/X_test.txt',
+                                                'UCI HAR Dataset/test/y_test.txt',])
 
-        # rename dir
-        os.rename('UCI HAR Dataset', 'data')
+            # rename dir
+            os.rename('UCI HAR Dataset', 'data')
 
-    X_train=pd.read_csv("data/train/X_train.txt", delim_whitespace=True, names=["F"+str(i) for i in range(1, 562)])
-    y_train=pd.read_csv("data/train/y_train.txt", delim_whitespace=True, names=["label"])
-    y_train['label']=y_train['label']-1
+        X_train=pd.read_csv("data/train/X_train.txt", delim_whitespace=True, names=["F"+str(i) for i in range(1, 562)])
+        y_train=pd.read_csv("data/train/y_train.txt", delim_whitespace=True, names=["label"])
+        y_train['label']=y_train['label']-1
 
-    X_test=pd.read_csv("data/test/X_test.txt", delim_whitespace=True, names=["F"+str(i) for i in range(1, 562)])
-    y_test=pd.read_csv("data/test/y_test.txt", delim_whitespace=True, names=["label"])
-    y_test['label']=y_test['label']-1
+        X_test=pd.read_csv("data/test/X_test.txt", delim_whitespace=True, names=["F"+str(i) for i in range(1, 562)])
+        y_test=pd.read_csv("data/test/y_test.txt", delim_whitespace=True, names=["label"])
+        y_test['label']=y_test['label']-1
 
     training_data = torch.utils.data.TensorDataset(torch.tensor(X_train.values).float(), torch.as_tensor(y_train.values).squeeze())
     test_data=torch.utils.data.TensorDataset(torch.tensor(X_test.values).float(), torch.as_tensor(y_test.values).squeeze())
