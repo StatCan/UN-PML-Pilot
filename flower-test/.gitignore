@@ -2,10 +2,10 @@
 
 # Ignore all files in this dir...
 *
+**/*.ipynb_checkpoints/
 
 # Except for these...
 !.gitignore
-!plain-avg
+!1-plain-avg
 !README.md
-!flower-test-1.gif
-
+!2-four-clients

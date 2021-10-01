@@ -1,0 +1,16 @@
+# .gitignore 
+
+# Ignore all files in this dir...
+*
+
+# Except for these...
+!.gitignore
+!har.py
+!har-server.py
+!har-client.ipynb
+!har-client.py
+!README.md
+!flower-4-clients.gif
+!flower-client.png
+!flower-server.png
+
