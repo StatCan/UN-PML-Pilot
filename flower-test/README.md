@@ -2,13 +2,13 @@
 
 ## Plain FedAvg
 
-### [First test](../1-plain-avg/README.md)
+### [First test](1-plain-avg/README.md)
 - Central Authority (server)
 - 2 NSOs (clients)
 - FedAvg
 - Same datasets
 
-### [Second test](../2-four-clients/README.md)
+### [Second test](2-four-clients/README.md)
 - Central Authority (server)
 - 4 NSOs
 - FedAvg
