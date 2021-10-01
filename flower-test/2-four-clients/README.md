@@ -44,6 +44,7 @@ Example:
 
         python har-server.py -s localhost:8080 -m 2 -M 2 -r3
 <img src="flower-server.png" width="720" />        
+
 ## Client instructions
 Please make sure that conda and git are installed.
 
