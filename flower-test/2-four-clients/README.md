@@ -86,7 +86,29 @@ Please make sure that conda and git are installed.
 <img src="flower-client.png" width="720" />
 6. Because we need another client to start and finish the training, repeat steps 4-5 in another shell.
 
+## Running the test locally
 
+1. Run the server (expecting 4 clients)
+
+        python har-server.py -s localhost:8080 -m 4 -M 4 -r4
+
+2. Run each NSO client in a different terminal session (or in the background)
+
+**CBS**
+
+       python har-client.py -s localhost:8080 -T../../OUTPUT/0\ -\ CBS/train/0_ALL_train.csv -t../../OUTPUT/0\ -\ CBS/test/0_ALL_test.csv
+       
+**ISTAT**
+
+       python har-client.py -s localhost:8080 -T../../OUTPUT/1\ -\ ISTAT/train/1_ALL_train.csv -t../../OUTPUT/1\ -\ ISTAT/test/1_ALL_test.csv
+       
+**ONS**
+
+       python har-client.py -s localhost:8080 -T../../OUTPUT/2\ -\ ONS/train/2_ALL_train.csv -t../../OUTPUT/2\ -\ ONS/test/2_ALL_test.csv
+       
+**STATCAN**
+
+       python har-client.py -s localhost:8080 -T../../OUTPUT/3\ -\ STATCAN/train/3_ALL_train.csv -t../../OUTPUT/3\ -\ STATCAN/test/3_ALL_test.csv
 
 
 
