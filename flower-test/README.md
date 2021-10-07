@@ -15,7 +15,7 @@
 - Data splitted
 - Save updated model
 
-### [Third test](../3-central-model/README.md)
+### [Third test](3-central-model/README.md)
 - Same as 2nd test
 - The model should be sent by the CA
 
