@@ -1,7 +1,24 @@
 # -*- coding: utf-8 -*-
 """Inital model for HAR dataset.
 
-It defines the model and data loaders
+This module defines the neural model and data loaders
+
+Attributes:
+-----------
+DATA_ROOT : str
+    Default data directory
+device : str
+    The device for training ``cuda`` or ``cpu``
+DATA_URL : str
+    Default data url for download
+model : object
+    Model instance
+
+Notes:
+------
+This is module contains some HACKs, and it can be / should be improved.
+For instance importing and exporting layers could use a ``JSON`` object.
+For this test we stick to python ``dict``.
 """
 
 import os
@@ -33,7 +50,7 @@ DATA_URL = "https://archive.ics.uci.edu/ml/"\
 def parse_module(module: OrderedDict) -> Tuple[str, str]:
     """Parse layer description.
 
-    In PyTorch shows a layer description like this:
+    PyTorch shows a layer description like this:
     'Linear(in_features=561, out_features=512, bias=True)'
     This module parse this string to get the name of the layer (Linear)
     and the named arguments for this layer with correct types
@@ -50,6 +67,10 @@ def parse_module(module: OrderedDict) -> Tuple[str, str]:
         Name of the layer or activation
     kwrds
         keyword arguments dictionary, useful to recreate the layer
+
+    Notes:
+    ------
+    This is a HACK, and it can be / should be improved.
     """
     # use regex to keep layer/activation in first group and keyword
     # arguments in second group
@@ -83,6 +104,13 @@ class NeuralNetwork(nn.Module):
     """
 
     def __init__(self, model_dict: OrderedDict = None) -> None:
+        """Call base `init` and `set_nn` to construct the network.
+
+        Parameters:
+        -----------
+        model_dict
+            Dictionary with modules parameters
+        """
         super(NeuralNetwork, self).__init__()
         self.set_nn(model_dict)
 
@@ -103,7 +131,7 @@ class NeuralNetwork(nn.Module):
                             ("Linear3", nn.Linear(512, 6))])
         else:
             self.linear_relu_stack_dict = model_dict
-
+        # let's work with sequential (connected) layers
         self.linear_relu_stack = nn.Sequential(self.linear_relu_stack_dict)
 
     def forward(self, x: Tensor) -> Tensor:
@@ -123,12 +151,16 @@ class NeuralNetwork(nn.Module):
         return logits
 
     def to_dict(self) -> Dict:
-        """Return a dict with network layers.
+        """Return a dictionary with network layers.
 
         Returns:
         --------
         stack_odict
             Ordered dictionary with layer configuration
+
+        Notes:
+        ------
+        This is part of a HACK, and it can be / should be improved.
         """
         stack_odict = OrderedDict()
         # get first key only
@@ -138,33 +170,66 @@ class NeuralNetwork(nn.Module):
 
         stack_odict = {}
         for key, module in seq._modules.items():
+            # get string representation of module
             mod_str = repr(module)
             stack_odict[key] = str(mod_str)
 
         return stack_odict
 
     def from_dict(self, model_dict: OrderedDict) -> None:
-        """Return network layers from dict.
+        """Set network layers from dictionary.
 
-        Returns:
+        Parameters:
         --------
         model_dict
             Ordered dictionary with layer configuration
+
+        Notes:
+        ------
+        This is part of a HACK, and it can be / should be improved.
         """
         self.linear_relu_stack_dict = OrderedDict()
+        # go through the input dict
         for key, module in model_dict.items():
             name, kwrds = parse_module(module)
             if "linear" in name.lower():
                 self.linear_relu_stack_dict[key] = nn.Linear(**kwrds)
             if "relu" in name.lower():
                 self.linear_relu_stack_dict[key] = nn.ReLU(**kwrds)
+            if "bn" in name.lower():
+                self.linear_relu_stack_dict[key] = nn.BatchNorm1d(**kwrds)
+        # let's build the model from specifications above
         self.linear_relu_stack = nn.Sequential(self.linear_relu_stack_dict)
 
-    def get_model_string(self):
+    def to_string(self) -> str:
+        """Return a string with a dictionary with network layers.
+
+        Returns:
+        --------
+        str
+            String eith Ordered dictionary with layer configuration
+
+        Notes:
+        ------
+        This is part of a HACK, and it can be / should be improved.
+        We could redifine the ``__repr__`` instead.
+        """
         return str(self.to_dict())
 
-    def set_model_string(self, model_str):
+    def from_string(self, model_str: str) -> None:
+        """Set network layers from a string of python dictionary.
+
+        Parameters:
+        --------
+        model_str
+            Ordered dictionary with layer configuration
+
+        Notes:
+        ------
+        This is part of a HACK, and it can be / should be improved.
+        """
         try:
+            # use ast literal eval to build dict from string
             self.from_dict(ast.literal_eval(model_str))
         except Exception as e:
             print("Error loading model, ", e)

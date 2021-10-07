@@ -7,7 +7,7 @@
 - 4 NSOs
 - FedAvg
 - Data splitted
-- Network configuration and weights sent by CA
+- The model configuration and weights are sent by the CA
 <img src="flower-ca.gif" width="800" />
 
 ## Server instructions
@@ -21,10 +21,10 @@ Please make sure that conda and git are installed.
         git clone https://github.com/StatCan/UN-PML-Pilot.git
 3. Install the libraries
 
-        pip install flwr torch torchvision click
+        pip install flwr torch torchvision click matplotlib
 4. Change dir
 
-        cd flower-test/2-four-clients
+        cd flower-test/3-central-model
 4. Export environment variable for servername and port and launch server 
 
         export HAR_SERVER=[::]:8080 python server.py
@@ -39,11 +39,12 @@ Please make sure that conda and git are installed.
           -M, --min_available_clients INTEGER
                                           [default: 4]
           -r, --number_of_rounds INTEGER  [default: 3]
+          -d, --debug BOOLEAN [default: False]
           --help                          Show this message and exit.
 Example:
 
         python har-server.py -s localhost:8080 -m 2 -M 2 -r3
-<img src="flower-server.png" width="720" />        
+
 
 ## Client instructions
 Please make sure that conda and git are installed.
@@ -60,7 +61,7 @@ Please make sure that conda and git are installed.
         pip install flwr torch torchvision click
 4. Change dir 
         
-        cd flower-test/2-four-clients
+        cd flower-test/3-central-model
 4. Export environment variable for servername and port and launch client 
         
         HAR_SERVER=localhost:8080 TEST_PATH=path_to_test_dataset TRAIN_PATH=path_to_train_dataset python har-client.py
@@ -78,38 +79,20 @@ Please make sure that conda and git are installed.
           -s, --servername TEXT
           -T, --training_set TEXT
           -t, --test_set TEXT
+          -d, --debug BOOLEAN [default: False]
           --help                   Show this message and exit.
 
 - Example:
 
         python har-client.py -s localhost:8080 -T../../OUTPUT/3\ -\ STATCAN/train/3_ALL_train.csv -t../../OUTPUT/3\ -\ STATCAN/test/3_ALL_test.csv
-<img src="flower-client.png" width="720" />
+
 6. Because we need another client to start and finish the training, repeat steps 4-5 in another shell.
 
-## Running the test locally
+## Running all clients and server locally
 
-1. Run the server (expecting 4 clients)
+Run server and 4 clients in a `tmux` session called `flower` for 25 training rounds and in debug mode. `tmux` has to be installed.
 
-        python har-server.py -s localhost:8080 -m 4 -M 4 -r4
+        ./launch-test.sh flower 25 1
 
-2. Run each NSO client in a different terminal session (or in the background)
-
-**CBS**
-
-       python har-client.py -s localhost:8080 -T../../OUTPUT/0\ -\ CBS/train/0_ALL_train.csv -t../../OUTPUT/0\ -\ CBS/test/0_ALL_test.csv
-       
-**ISTAT**
-
-       python har-client.py -s localhost:8080 -T../../OUTPUT/1\ -\ ISTAT/train/1_ALL_train.csv -t../../OUTPUT/1\ -\ ISTAT/test/1_ALL_test.csv
-       
-**ONS**
-
-       python har-client.py -s localhost:8080 -T../../OUTPUT/2\ -\ ONS/train/2_ALL_train.csv -t../../OUTPUT/2\ -\ ONS/test/2_ALL_test.csv
-       
-**STATCAN**
-
-       python har-client.py -s localhost:8080 -T../../OUTPUT/3\ -\ STATCAN/train/3_ALL_train.csv -t../../OUTPUT/3\ -\ STATCAN/test/3_ALL_test.csv
-
-
-
-
+It should show a window like this:
+<img src="results.png" width="720" />
