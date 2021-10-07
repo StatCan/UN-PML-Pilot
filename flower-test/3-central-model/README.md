@@ -95,4 +95,5 @@ Run server and 4 clients in a `tmux` session called `flower` for 25 training rou
         ./launch-test.sh flower 25 1
 
 It should show a window like this:
+
 <img src="results.png" width="720" />
