@@ -211,6 +211,8 @@ def get_eval_fn(model: object,
         lines.set_data(np.append(lines.get_xdata(), round_counter),
                        np.append(lines.get_ydata(), accuracy))
         lines.figure.canvas.flush_events()
+    # save the model
+    torch.save(model.state_dict(), "model.pt")
     return evaluate
 
 
