@@ -85,12 +85,14 @@ def run_server(servername: str, min_fit_clients: int,
     #                  ("ReLU2", nn.ReLU()),
     #                  ("Linear3", nn.Linear(10, 6))])
     # model = har.NeuralNetwork(min_dict)
-
     # large model
     model = har.NeuralNetwork()
     # get str for default model
     Model_dict = model.to_string()
     print(Model_dict)
+    # tweak axis
+    ax.set_xlim(1, number_of_rounds)
+    ax.xaxis.get_major_locator().set_params(integer=True)
     if debug:
         print(model.state_dict()['linear_relu_stack.Linear3.weight'])
     try:
@@ -224,7 +226,6 @@ if __name__ == "__main__":
 
     fig, ax = plt.subplots()
     ax.set_ylim(0, 100)
-    ax.set_xlim(1, 25)
     ax.set_xlabel(r"Round #")
     ax.set_ylabel(r"Accuracy %")
     lines, = ax.plot([0, 0], "-bo")
