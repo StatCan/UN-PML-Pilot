@@ -5,9 +5,8 @@
 ### Fourth test
 - Central Authority (server)
 - 4 NSOs
-- Encrypted FedAvg
+- Encrypted FedAvg.
 - Data splitted
-- The model configuration and weights are sent by the CA
 <img src="flower-phe.gif" width="800" />
 
 ## Server instructions
