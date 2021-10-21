@@ -161,7 +161,7 @@ def fit_config(rnd: int) -> Dict[str, str]:
     global Model_dict
     config: Dict[str, fl.common.Scalar] = {
         #"epoch_global": str(rnd),
-        "epochs": "10",
+        "epochs": "25",
         #"batch_size": str(32),
         "config": Model_dict
     }
