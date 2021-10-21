@@ -2,13 +2,12 @@
 
 ## Plain FedAvg
 
-### Third test
+### Fourth test
 - Central Authority (server)
 - 4 NSOs
-- FedAvg
+- Encrypted FedAvg
 - Data splitted
-- The model configuration and weights are sent by the CA
-<img src="flower-ca.gif" width="800" />
+<img src="flower-phe.gif" width="800" />
 
 ## Server instructions
 Please make sure that conda and git are installed.
@@ -21,10 +20,10 @@ Please make sure that conda and git are installed.
         git clone https://github.com/StatCan/UN-PML-Pilot.git
 3. Install the libraries
 
-        pip install flwr torch torchvision click matplotlib
+        pip install flwr torch torchvision click matplotlib phe
 4. Change dir
 
-        cd flower-test/3-central-model
+        cd flower-test/4-paillier-common-key
 4. Export environment variable for servername and port and launch server 
 
         export HAR_SERVER=[::]:8080 python server.py
@@ -58,10 +57,10 @@ Please make sure that conda and git are installed.
         git clone https://github.com/StatCan/UN-PML-Pilot.git
 3. Install the libraries
         
-        pip install flwr torch torchvision click
+        pip install flwr torch torchvision click phe
 4. Change dir 
         
-        cd flower-test/3-central-model
+        cd flower-test/4-paillier-common-key
 4. Export environment variable for servername and port and launch client 
         
         HAR_SERVER=localhost:8080 TEST_PATH=path_to_test_dataset TRAIN_PATH=path_to_train_dataset python har-client.py
@@ -92,8 +91,8 @@ Please make sure that conda and git are installed.
 
 Run server and 4 clients in a `tmux` session called `flower` for 25 training rounds and in debug mode. `tmux` has to be installed.
 
-        ./launch-test.sh flower 25 1
+        ./launch-test.sh flower 20 1
 
-It should show a window like this:
+It should show four plots like this:
 
 <img src="results.png" width="720" />
