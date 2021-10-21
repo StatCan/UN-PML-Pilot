@@ -1,6 +1,6 @@
 # Flower test
 
-## Plain FedAvg
+## Encrypted FedAvg
 
 ### Third test
 - Central Authority (server)
@@ -8,7 +8,7 @@
 - FedAvg
 - Data splitted
 - The model configuration and weights are sent by the CA
-<img src="flower-ca.gif" width="800" />
+<img src="flower-phe.gif" width="800" />
 
 ## Server instructions
 Please make sure that conda and git are installed.
