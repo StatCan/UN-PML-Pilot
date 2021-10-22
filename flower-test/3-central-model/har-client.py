@@ -235,11 +235,6 @@ def main(servername: str, training_set: str, test_set: str,
         training dataset path
     test_set
         test dataset path
-    min_available_clients
-        Minimum number of clients that need to be connected to the server
-        before a training round
-    number_of_rounds
-        Number of training rounds
     debug
         Flag for trigger some debug strings
     """
