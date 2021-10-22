@@ -17,8 +17,11 @@
 
 ### [Third test](3-central-model/README.md)
 - Same as 2nd test
-- The model should be sent by the CA
+- The model is sent by the CA
 
+### [Fourth test](4-paillier-common-keys)
+- This setting is similar to the 2nd test, the first client to connect sends the initial weights but in this case they are encrypted
+- Encrypted FedAvg using Paillier
 
 
 
