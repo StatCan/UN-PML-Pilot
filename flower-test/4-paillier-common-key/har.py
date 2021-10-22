@@ -43,8 +43,10 @@ device = "cuda" if torch.cuda.is_available() else "cpu"
 # reproducibility - REMOVE
 torch.manual_seed(0)
 
-DATA_URL = "https://archive.ics.uci.edu/ml/"\
-           "machine-learning-databases/00240/UCI%20HAR%20Dataset.zip"
+DATA_URL = (
+    "https://archive.ics.uci.edu/ml/"
+    "machine-learning-databases/00240/UCI%20HAR%20Dataset.zip"
+)
 
 
 def parse_module(module: OrderedDict) -> Tuple[str, str]:
@@ -80,8 +82,7 @@ def parse_module(module: OrderedDict) -> Tuple[str, str]:
         # split arguments
         mods = m.group(2).split(",")
         # put keyword and argument in a dictionary
-        kwrds = {m.split("=")[0].strip(): m.split("=")[1].strip()
-                 for m in mods}
+        kwrds = {m.split("=")[0].strip(): m.split("=")[1].strip() for m in mods}
     else:
         kwrds = {}
 
@@ -89,8 +90,7 @@ def parse_module(module: OrderedDict) -> Tuple[str, str]:
         try:
             # get the correct type for argument and updates the dictionary
             kwrds[k] = ast.literal_eval(v)
-        except (ValueError, TypeError, SyntaxError,
-                MemoryError, RecursionError) as e:
+        except (ValueError, TypeError, SyntaxError, MemoryError, RecursionError) as e:
             print(f"Error infering {v} type for key {k}")
             print(e)
 
@@ -123,12 +123,15 @@ class NeuralNetwork(nn.Module):
             Dictionary with modules parameters
         """
         if not model_dict:
-            self.linear_relu_stack_dict =\
-                OrderedDict([("Linear1", nn.Linear(561, 512)),
-                            ("ReLU1", nn.ReLU()),
-                            ("Linear2", nn.Linear(512, 512)),
-                            ("ReLU2", nn.ReLU()),
-                            ("Linear3", nn.Linear(512, 6))])
+            self.linear_relu_stack_dict = OrderedDict(
+                [
+                    ("Linear1", nn.Linear(561, 512)),
+                    ("ReLU1", nn.ReLU()),
+                    ("Linear2", nn.Linear(512, 512)),
+                    ("ReLU2", nn.ReLU()),
+                    ("Linear3", nn.Linear(512, 6)),
+                ]
+            )
         else:
             self.linear_relu_stack_dict = model_dict
         # let's work with sequential (connected) layers
@@ -238,9 +241,9 @@ class NeuralNetwork(nn.Module):
 model = NeuralNetwork().to(device)
 
 
-def load_data(test_path: str = None,
-              train_path: str = None) -> Tuple[torch.utils.data.DataLoader,
-                                               torch.utils.data.DataLoader]:
+def load_data(
+    test_path: str = None, train_path: str = None
+) -> Tuple[torch.utils.data.DataLoader, torch.utils.data.DataLoader]:
     """Load datasets.
 
     Parameters:
@@ -257,58 +260,62 @@ def load_data(test_path: str = None,
         train DataLoader, test DataLoader
     """
     if test_path and train_path:
-        trainingset = pd.read_csv(train_path, delimiter=';')
-        testset = pd.read_csv(test_path, delimiter=';')
+        trainingset = pd.read_csv(train_path, delimiter=";")
+        testset = pd.read_csv(test_path, delimiter=";")
 
-        x_train = pd.concat([trainingset[str(i)]
-                            for i in range(561)], axis=1)
-        y_train = trainingset['Y'] - 1
+        x_train = pd.concat([trainingset[str(i)] for i in range(561)], axis=1)
+        y_train = trainingset["Y"] - 1
 
         x_test = pd.concat([testset[str(i)] for i in range(561)], axis=1)
-        y_test = testset['Y'] - 1
+        y_test = testset["Y"] - 1
     else:
-        if not os.path.isdir('data'):
+        if not os.path.isdir("data"):
             # check if file was deflated
-            if not os.path.isfile('har-data.zip'):
+            if not os.path.isfile("har-data.zip"):
                 # we have to download the data
                 urllib.request.urlretrieve(DATA_URL, filename="har-data.zip")
 
             # unzip it
             with zipfile.ZipFile("har-data.zip", "r") as zip_ref:
-                zip_ref.extractall('.',
-                                   members=
-                                   ['UCI HAR Dataset/train/X_train.txt',
-                                    'UCI HAR Dataset/train/y_train.txt',
-                                    'UCI HAR Dataset/test/X_test.txt',
-                                    'UCI HAR Dataset/test/y_test.txt'])
+                zip_ref.extractall(
+                    ".",
+                    members=[
+                        "UCI HAR Dataset/train/X_train.txt",
+                        "UCI HAR Dataset/train/y_train.txt",
+                        "UCI HAR Dataset/test/X_test.txt",
+                        "UCI HAR Dataset/test/y_test.txt",
+                    ],
+                )
 
             # rename dir
-            os.rename('UCI HAR Dataset', 'data')
+            os.rename("UCI HAR Dataset", "data")
 
-        x_train = pd.read_csv("data/train/X_train.txt",
-                              delim_whitespace=True,
-                              names=["F"+str(i) for i in range(1, 562)])
-        y_train = pd.read_csv("data/train/y_train.txt",
-                              delim_whitespace=True,
-                              names=["label"])
-        y_train['label'] = y_train['label']-1
+        x_train = pd.read_csv(
+            "data/train/X_train.txt",
+            delim_whitespace=True,
+            names=["F" + str(i) for i in range(1, 562)],
+        )
+        y_train = pd.read_csv(
+            "data/train/y_train.txt", delim_whitespace=True, names=["label"]
+        )
+        y_train["label"] = y_train["label"] - 1
 
-        x_test = pd.read_csv("data/test/X_test.txt",
-                             delim_whitespace=True,
-                             names=["F"+str(i) for i in range(1, 562)])
-        y_test = pd.read_csv("data/test/y_test.txt",
-                             delim_whitespace=True,
-                             names=["label"])
-        y_test['label'] = y_test['label']-1
+        x_test = pd.read_csv(
+            "data/test/X_test.txt",
+            delim_whitespace=True,
+            names=["F" + str(i) for i in range(1, 562)],
+        )
+        y_test = pd.read_csv(
+            "data/test/y_test.txt", delim_whitespace=True, names=["label"]
+        )
+        y_test["label"] = y_test["label"] - 1
 
-    training_data =\
-        torch.utils.data.TensorDataset(torch.tensor(x_train.values).float(),
-                                       torch.as_tensor(
-                                           y_train.values).squeeze())
-    test_data =\
-        torch.utils.data.TensorDataset(torch.tensor(x_test.values).float(),
-                                       torch.as_tensor(
-                                           y_test.values).squeeze())
+    training_data = torch.utils.data.TensorDataset(
+        torch.tensor(x_train.values).float(), torch.as_tensor(y_train.values).squeeze()
+    )
+    test_data = torch.utils.data.TensorDataset(
+        torch.tensor(x_test.values).float(), torch.as_tensor(y_test.values).squeeze()
+    )
 
     batch_size = 64
 
@@ -392,6 +399,8 @@ def test(model, dataloader, device) -> Tuple[float, float]:
             correct += (pred.argmax(1) == y).type(torch.float).sum().item()
     test_loss /= num_batches
     correct /= size
-    print(f"Test Error: \n Accuracy: {(100*correct):>0.1f}%"
-          f", Avg loss: {test_loss:>8f} \n")
-    return test_loss, 100*correct
+    print(
+        f"Test Error: \n Accuracy: {(100*correct):>0.1f}%"
+        f", Avg loss: {test_loss:>8f} \n"
+    )
+    return test_loss, 100 * correct

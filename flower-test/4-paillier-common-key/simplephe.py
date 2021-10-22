@@ -17,9 +17,6 @@ import phe
 from typing import Callable, Dict, List, Optional, Tuple, Iterable, Union
 from click import secho
 from flwr.common import (
-    # EvaluateIns,
-    # EvaluateRes,
-    # FitIns,
     FitRes,
     Parameters,
     Scalar,
@@ -536,6 +533,8 @@ class SimplePaillierAvg(fedavg.FedAvg):
             initial_parameters,
         )
         self.other = 1
+        print("config")
+        print(self.on_fit_config_fn)
 
     def aggregate_fit(
         self,
@@ -562,38 +561,42 @@ class SimplePaillierAvg(fedavg.FedAvg):
             for n, e in enumerate(res_array):
                 # check for encrypted serialized array
                 if e.flatten().dtype.type is np.str_:
-                    secho(f"Deserializing {e.size} elements ", fg="cyan",
-                          nl=False)
-                    enc_array = EncArray.deserialize_ndarray(e,
-                                                             keygen.public_key)
+                    secho(f"Deserializing {e.size} elements ", fg="cyan", nl=False)
+                    enc_array = EncArray.deserialize_ndarray(e, keygen.public_key)
                     secho(f"with shape {enc_array.shape}", fg="cyan")
                     weights_results.append(enc_array)
                 else:
+                    # parameters on the clear, just append them
                     weights_results.append(e)
             res.append((weights_results, fit_res.num_examples))
         num_examples_total = sum([num_examples for _, num_examples in res])
 
-        for n, e in enumerate(res):
-            if isinstance(e, EncArray):
-                print(f"Exponent {e[0].exponent}")
-                break
+        # for n, e in enumerate(res):
+        #     if isinstance(e, EncArray):
+        #         print(f"Exponent {e[0].exponent}")
+        #         break
+
         # Create a list of weights, each multiplied by the related
-        # number of examples
+        # number of examples, in the case of encrypted layers this is
+        # plaintext x ciphertext multiplication
         weighted_weights = [
             [layer * num_examples for layer in weights] for weights, num_examples in res
         ]
         # Compute average weights of each layer
+        # nicely np.add is available for our ciphertexts given the homomorphic
+        # properties of the Paillier Cryptosystem
         weights_prime = [
             reduce(np.add, layer_updates) / num_examples_total
             for layer_updates in zip(*weighted_weights)
         ]
-        # serialization for transmission
+        # serialization for transmission, we have a mix of clear & ciphertexts
         weights_pp = []
         for n, e in enumerate(weights_prime):
             if isinstance(e, EncArray):
                 weights_pp.append(e.serialize_ndarray())
             else:
                 weights_pp.append(e)
+        # ndarray to bytes for transmission
         return weights_to_parameters(weights_pp), {}
 
     def evaluate(

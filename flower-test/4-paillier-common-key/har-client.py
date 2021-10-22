@@ -49,13 +49,14 @@ class HARClient(fl.client.NumPyClient):
     Client implementation.
     """
 
-    def __init__(self,
-                 model: object,  # har.NeuralNetwork,
-                 trainloader: torch.utils.data.DataLoader,
-                 testloader: torch.utils.data.DataLoader,
-                 debug: bool = False,
-                 ax = None,
-                 lines = None) -> None:
+    def __init__(
+        self,
+        model: object,  # har.NeuralNetwork,
+        trainloader: torch.utils.data.DataLoader,
+        testloader: torch.utils.data.DataLoader,
+        debug: bool = False,
+        test_set_name: str = None,
+    ) -> None:
         """Set model and train-test data loaders.
 
         Parameters:
@@ -75,11 +76,10 @@ class HARClient(fl.client.NumPyClient):
         # HACK this specifies if False is the first communication between
         # server and client in a round of training
         self.train_state = False
+        self.first_evaluation_call = True
         self.debug = debug
         self.keygen = sp.KeyGenerator.load()
-        self.ax = ax
-        self.lines = lines
-        self.round_counter = 0
+        self.test_set_name = test_set_name
 
     def get_parameters(self) -> List[np.ndarray]:
         """Get parameters."""
@@ -88,20 +88,16 @@ class HARClient(fl.client.NumPyClient):
         encrypted_parameters = []
         for n, (name, val) in enumerate(self.model.state_dict().items()):
             if n % 2 != 0 or n == 4:
-                secho(f"Encrypting {name} {val.cpu().numpy().shape}",
-                      fg="yellow")
-                #e = sp.EncArray(
-                #    val.cpu().numpy().flatten()).encrypt(
-                #        self.keygen.public_key).serialize()
-                # encrypted_parameters.append(np.asarray(e))
-                enc_ndarray = sp.EncArray(
-                    val.cpu().numpy()).encrypt(
-                        self.keygen.public_key).serialize_ndarray()
+                secho(f"Encrypting {name} {val.cpu().numpy().shape}", fg="yellow")
+                enc_ndarray = (
+                    sp.EncArray(val.cpu().numpy())
+                    .encrypt(self.keygen.public_key)
+                    .serialize_ndarray()
+                )
                 print(f"Encrypted ndarray shape {enc_ndarray.shape}")
                 encrypted_parameters.append(enc_ndarray)
             else:
-                secho(f"Not encrypted {name} {val.cpu().numpy().shape}",
-                      fg="blue")
+                secho(f"Not encrypted {name} {val.cpu().numpy().shape}", fg="blue")
                 encrypted_parameters.append(val.cpu().numpy())
         return encrypted_parameters
 
@@ -112,17 +108,17 @@ class HARClient(fl.client.NumPyClient):
         # iterate in list of arrays from each client
         for n, e in enumerate(parameters):
             if e.flatten().dtype.type is np.str_:
-                secho(f"Deserialiazing and decrypting {e.shape} elements ",
-                      fg="yellow", nl=False)
+                secho(
+                    f"Deserialiazing and decrypting {e.shape} elements ",
+                    fg="yellow",
+                    nl=False,
+                )
                 # HACK exponent has changed from 32 to 47
-                enc_array =\
-                    sp.EncArray.deserialize_ndarray(e,
-                                                    self.keygen.public_key,
-                                                    -47)
+                enc_array = sp.EncArray.deserialize_ndarray(
+                    e, self.keygen.public_key, -47
+                )
                 secho(f"with shape {enc_array.shape}", fg="yellow")
-                parameters_clear.append(
-                    enc_array.decrypt(self.keygen.private_key)
-                    )
+                parameters_clear.append(enc_array.decrypt(self.keygen.private_key))
             else:
                 # this one is on the clear
                 parameters_clear.append(e)
@@ -133,8 +129,9 @@ class HARClient(fl.client.NumPyClient):
         state_dict = OrderedDict({k: torch.Tensor(v) for k, v in params_dict})
         self.model.load_state_dict(state_dict, strict=True)
 
-    def fit(self, parameters: List[np.ndarray],
-            config: Dict[str, str]) -> Tuple[List[np.ndarray], int]:
+    def fit(
+        self, parameters: List[np.ndarray], config: Dict[str, str]
+    ) -> Tuple[List[np.ndarray], int]:
         """Set model parameters, train model, return updated model parameters.
 
         Parameters:
@@ -150,7 +147,13 @@ class HARClient(fl.client.NumPyClient):
         tuple
             updated parameters, size of train dataset, None
         """
-        secho("Calling fit", fg="magenta")
+        secho(f"Calling fit {config}", fg="magenta")
+        # get current round
+        self.round = int(config["round"])
+        # create plots only at first evaluation or maybe round=0
+        if self.first_evaluation_call:
+            self.ax, self.lines = set_plot(config["num_rounds"], self.test_set_name)
+            self.first_evaluation_call = False
         for n, e in enumerate(parameters):
             # if need to check for ciphertexts
             if isinstance(e[0], np.str_):
@@ -161,8 +164,9 @@ class HARClient(fl.client.NumPyClient):
 
         return self.get_parameters(), len(self.trainloader), {}
 
-    def evaluate(self, parameters: List[np.ndarray],
-                 config: Dict[str, str]) -> Tuple[int, float, float]:
+    def evaluate(
+        self, parameters: List[np.ndarray], config: Dict[str, str]
+    ) -> Tuple[int, float, float]:
         """Set model parameters, evaluate model on local test dataset,
         and return result.
 
@@ -181,6 +185,7 @@ class HARClient(fl.client.NumPyClient):
             loss, size, and accuracy
         """
         secho("Calling evaluate", fg="green")
+
         for n, e in enumerate(parameters):
             if isinstance(e[0], np.str_):
                 # if need to check for ciphertexts
@@ -189,27 +194,31 @@ class HARClient(fl.client.NumPyClient):
         self.set_parameters(parameters)
         loss, accuracy = har.test(self.model, self.testloader, device=DEVICE)
         # plot something
-        self.round_counter += 1
+        # self.round_counter += 1
         if self.lines:
-            self.lines.set_data(np.append(self.lines.get_xdata(),
-                                           self.round_counter),
-                                            np.append(self.lines.get_ydata(),
-                                             accuracy))
+            self.lines.set_data(
+                np.append(self.lines.get_xdata(), self.round),
+                np.append(self.lines.get_ydata(), accuracy),
+            )
             self.lines.figure.canvas.flush_events()
         return float(loss), len(self.testloader), {"accuracy": float(accuracy)}
 
 
 @click.command()
-@click.option('-s', '--servername', prompt=False,
-              default=lambda: os.environ.get('HAR_SERVER', ''))
-@click.option('-T', '--training_set', prompt=False,
-              default=lambda: os.environ.get('TRAIN_PATH', ''))
-@click.option('-t', '--test_set', prompt=False,
-              default=lambda: os.environ.get('TEST_PATH', ''))
-@click.option('-d', '--debug', prompt=False,
-              default=False)
-def main(servername: str, training_set: str, test_set: str,
-         debug: bool) -> None:
+@click.option(
+    "-s", "--servername", prompt=False, default=lambda: os.environ.get("HAR_SERVER", "")
+)
+@click.option(
+    "-T",
+    "--training_set",
+    prompt=False,
+    default=lambda: os.environ.get("TRAIN_PATH", ""),
+)
+@click.option(
+    "-t", "--test_set", prompt=False, default=lambda: os.environ.get("TEST_PATH", "")
+)
+@click.option("-d", "--debug", prompt=False, default=False)
+def main(servername: str, training_set: str, test_set: str, debug: bool) -> None:
     """Run a Federated Learning client using flower.
 
     Parameters
@@ -224,12 +233,11 @@ def main(servername: str, training_set: str, test_set: str,
         Flag for trigger some debug strings
     """
     print()
-    secho('Running a Federated Learning Client using Flower',
-          bg='magenta', fg='white')
+    secho("Running a Federated Learning Client using Flower", bg="magenta", fg="white")
     print()
-    secho('Using servername:port = {}'.format(servername), fg='green')
+    secho("Using servername:port = {}".format(servername), fg="green")
 
-    ax, lines = set_plot(20, test_set)
+    ax, lines = [], []  # set_plot(10, test_set)
 
     # Load data
     trainloader, testloader = har.load_data(test_set, training_set)
@@ -240,15 +248,14 @@ def main(servername: str, training_set: str, test_set: str,
     while True:
         try:
             # Start client / no model
-            client = HARClient(model, trainloader, testloader,
-                               debug, ax, lines)
-            secho('CONNECTING', blink=True, bold=True)
+            client = HARClient(model, trainloader, testloader, debug, test_set)
+            secho("CONNECTING", blink=True, bold=True)
             fl.client.start_numpy_client(servername, client)
             print()
-            secho("Training done!", bg='green', fg='white')
+            secho("Training done!", bg="green", fg="white")
             print()
         except KeyError as err:
-            secho(f"No hostname specified - {err}", bg='red', fg='white')
+            secho(f"No hostname specified - {err}", bg="red", fg="white")
         input("Press Enter to continue...")
         break
 
@@ -261,7 +268,7 @@ def set_plot(number_of_rounds, title):
     ax.set_ylim(0, 100)
     ax.set_xlabel(r"Round #")
     ax.set_ylabel(r"Accuracy %")
-    lines, = ax.plot([None, None], "-bo")
+    (lines,) = ax.plot([None, None], "-bo")
     # tweak axis
     ax.set_xlim(1, number_of_rounds)
     ax.xaxis.get_major_locator().set_params(integer=True)

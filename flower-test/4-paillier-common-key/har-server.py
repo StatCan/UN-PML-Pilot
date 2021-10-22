@@ -34,27 +34,45 @@ import numpy as np
 import simplephe
 
 
+# we need a global, fit_config only configures number of rounds
+Config = {}
+
+
 @click.command()
-@click.option('-s', '--servername', prompt=False,
-              default=lambda: os.environ.get('HAR_SERVER', ''))
-@click.option('-m', '--min_fit_clients', prompt=False,
-              default=4, type=int)
-@click.option('-M', '--min_available_clients', prompt=False,
-              default=4, show_default=True, type=int)
-@click.option('-r', '--number_of_rounds', prompt=False,
-              default=3, show_default=True, type=int)
-@click.option('-T', '--training_set', prompt=False,
-              default=lambda: os.environ.get('TRAIN_PATH', ''))
-@click.option('-t', '--test_set', prompt=False,
-              default=lambda: os.environ.get('TEST_PATH', ''))
-@click.option('-d', '--debug', prompt=False,
-              default=False)
-def run_server(servername: str, min_fit_clients: int,
-               min_available_clients: int,
-               number_of_rounds: int,
-               training_set: str = None,
-               test_set: str = None,
-               debug: bool = False) -> None:
+@click.option(
+    "-s", "--servername", prompt=False, default=lambda: os.environ.get("HAR_SERVER", "")
+)
+@click.option("-m", "--min_fit_clients", prompt=False, default=4, type=int)
+@click.option(
+    "-M",
+    "--min_available_clients",
+    prompt=False,
+    default=4,
+    show_default=True,
+    type=int,
+)
+@click.option(
+    "-r", "--number_of_rounds", prompt=False, default=3, show_default=True, type=int
+)
+@click.option(
+    "-T",
+    "--training_set",
+    prompt=False,
+    default=lambda: os.environ.get("TRAIN_PATH", ""),
+)
+@click.option(
+    "-t", "--test_set", prompt=False, default=lambda: os.environ.get("TEST_PATH", "")
+)
+@click.option("-d", "--debug", prompt=False, default=False)
+def run_server(
+    servername: str,
+    min_fit_clients: int,
+    min_available_clients: int,
+    number_of_rounds: int,
+    training_set: str = None,
+    test_set: str = None,
+    debug: bool = False,
+) -> None:
     """Run a Federated Learning server using flower.
 
     Parameters
@@ -77,6 +95,7 @@ def run_server(servername: str, min_fit_clients: int,
     """
     try:
         strategy = simplephe.SimplePaillierAvg(
+            on_fit_config_fn=fit_config,
             min_fit_clients=min_fit_clients,
             min_available_clients=min_available_clients,
             min_eval_clients=min_available_clients,  # Evaluate all
@@ -84,31 +103,56 @@ def run_server(servername: str, min_fit_clients: int,
         )
         # start server and listen using FedAvg strategy
         print()
-        secho('Running a Federated Learning Server using Flower '
-              + 'with Paillier Homomorphic Encryption Aggregation',
-              bg='blue', fg='white')
-        print()
-        secho('Using servername:port = {}'.format(servername),
-              fg='green')
         secho(
-            'Minimum number of clients for each round = {}'
-            .format(min_fit_clients), fg='green')
+            "Running a Federated Learning Server using Flower "
+            + "with Paillier Homomorphic Encryption Aggregation",
+            bg="blue",
+            fg="white",
+        )
+        print()
+        secho("Using servername:port = {}".format(servername), fg="green")
         secho(
-            'Minimum number of clients to start learning = {}'
-            .format(min_available_clients), fg='green')
-        secho('Number of training rounds = {}'.format(number_of_rounds),
-              fg='green')
+            "Minimum number of clients for each round = {}".format(min_fit_clients),
+            fg="green",
+        )
+        secho(
+            "Minimum number of clients to start learning = {}".format(
+                min_available_clients
+            ),
+            fg="green",
+        )
+        secho("Number of training rounds = {}".format(number_of_rounds), fg="green")
         print()
-        secho('LISTENING', blink=True, bold=True)
-        fl.server.start_server(servername,
-                                config={"num_rounds": number_of_rounds},
-                                strategy=strategy)
+        secho("LISTENING", blink=True, bold=True)
+        global Config
+        Config["num_rounds"] = number_of_rounds
+        fl.server.start_server(servername, config=Config, strategy=strategy)
         print()
-        secho("Training completed!", bg='green', fg='white')
+        secho("Training completed!", bg="green", fg="white")
         print()
 
     except KeyError as err:
-        secho(f"No hostname specified - {err}", bg='red', fg='white')
+        secho(f"No hostname specified - {err}", bg="red", fg="white")
+
+
+def fit_config(rnd: int) -> Dict[str, str]:
+    """Set config dictionary.
+
+    Parameters:
+    -----------
+    rnd
+        number of rounds
+    Returns:
+    --------
+    config
+        we should specify server/strategy configuration here
+    """
+    global Config
+    # config: Dict[str, fl.common.Scalar] = {
+    #    "round": str(rnd)
+    # }
+    Config["round"] = str(rnd)
+    return Config
 
 
 if __name__ == "__main__":
