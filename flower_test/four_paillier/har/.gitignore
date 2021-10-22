@@ -1,0 +1,10 @@
+# .gitignore 
+
+# Ignore all files in this dir...
+*
+
+# Except for these...
+!.gitignore
+!har.py
+!__init__.py
+

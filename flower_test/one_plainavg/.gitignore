@@ -2,12 +2,12 @@
 
 # Ignore all files in this dir...
 *
-**/*.ipynb_checkpoints/
 
 # Except for these...
 !.gitignore
-!1-plain-avg
+!har.py
+!server.py
+!har-client1.ipynb
+!har_client.py
+!flower-test-1.gif
 !README.md
-!2-four-clients
-!3-central-model
-!4-paillier-common-key

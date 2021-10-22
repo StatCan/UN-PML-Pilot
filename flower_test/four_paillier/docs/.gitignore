@@ -5,9 +5,6 @@
 
 # Except for these...
 !.gitignore
-!har.py
-!server.py
-!har-client1.ipynb
-!har-client.py
-!flower-test-1.gif
-!README.md
+!index.html
+!objects.inv
+!_static

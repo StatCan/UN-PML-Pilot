@@ -6,11 +6,11 @@
 # Except for these...
 !.gitignore
 !har.py
-!har-server.py
+!har_server.py
+!har_client.ipynb
 !har-client.py
 !README.md
-!launch-test.sh
-!flower-phe.gif
-!simplephe.py
-!results.png
+!flower-4-clients.gif
+!flower-client.png
+!flower-server.png
 
