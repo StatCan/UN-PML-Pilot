@@ -5,9 +5,8 @@
 ### Fourth test
 - Central Authority (server)
 - 4 NSOs
-- Encrypted FedAvg
+- Encrypted FedAvg.
 - Data splitted
-- The model configuration and weights are sent by the CA
 <img src="flower-phe.gif" width="800" />
 
 ## Server instructions
@@ -25,7 +24,13 @@ Please make sure that conda and git are installed.
 4. Change dir
 
         cd flower-test/4-paillier-common-key
-4. Export environment variable for servername and port and launch server 
+
+5. Generate keys in python like this:
+
+         import simplephe as sp
+         k = sp.KeyGenerator()
+         k.save_keys()
+6. Export environment variable for servername and port and launch server 
 
         export HAR_SERVER=[::]:8080 python server.py
 
@@ -62,7 +67,13 @@ Please make sure that conda and git are installed.
 4. Change dir 
         
         cd flower-test/4-paillier-common-key
-4. Export environment variable for servername and port and launch client 
+5. Generate keys in python like this:
+
+         import simplephe as sp
+         k = sp.KeyGenerator()
+         k.save_keys()
+
+6. Export environment variable for servername and port and launch client 
         
         HAR_SERVER=localhost:8080 TEST_PATH=path_to_test_dataset TRAIN_PATH=path_to_train_dataset python har-client.py
 - Example:
@@ -86,7 +97,7 @@ Please make sure that conda and git are installed.
 
         python har-client.py -s localhost:8080 -T../../OUTPUT/3\ -\ STATCAN/train/3_ALL_train.csv -t../../OUTPUT/3\ -\ STATCAN/test/3_ALL_test.csv
 
-6. Because we need another client to start and finish the training, repeat steps 4-5 in another shell.
+7. Because we need another client to start and finish the training, repeat steps 4-5 in another shell.
 
 ## Running all clients and server locally
 
