@@ -31,7 +31,7 @@ import torch
 from torch import nn
 from torch import Tensor
 import numpy as np
-import simplephe
+import simplephe.simplephe as sp
 
 
 # we need a global, fit_config only configures number of rounds
@@ -94,7 +94,7 @@ def run_server(
         Flag for trigger some debug strings
     """
     try:
-        strategy = simplephe.SimplePaillierAvg(
+        strategy = sp.SimplePaillierAvg(
             on_fit_config_fn=fit_config,
             min_fit_clients=min_fit_clients,
             min_available_clients=min_available_clients,

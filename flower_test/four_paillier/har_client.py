@@ -35,8 +35,8 @@ import numpy as np
 from click import secho
 import matplotlib.pyplot as plt
 
-import har
-import simplephe as sp
+from har import har
+import simplephe.simplephe as sp
 
 USE_FEDBN: bool = False
 

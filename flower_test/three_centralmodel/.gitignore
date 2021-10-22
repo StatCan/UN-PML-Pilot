@@ -1,0 +1,15 @@
+# .gitignore 
+
+# Ignore all files in this dir...
+*
+
+# Except for these...
+!.gitignore
+!har.py
+!har_server.py
+!har_client.py
+!README.md
+!launch-test.sh
+!flower-ca.gif
+!results.png
+!model.pt

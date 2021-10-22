@@ -5,11 +5,12 @@
 
 # Except for these...
 !.gitignore
-!har.py
-!har-server.py
-!har-client.py
+!har
+!har_server.py
+!har_client.py
 !README.md
 !launch-test.sh
-!flower-ca.gif
+!flower-phe.gif
+!simplephe
 !results.png
-!model.pt
+
