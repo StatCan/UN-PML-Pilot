@@ -1,0 +1,1131 @@
+
+
+<!doctype html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Federated Learning with flower 0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/bizstyle.css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <!--[if lt IE 9]>
+    <script src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="nav-item nav-item-0"><a href="#">Federated Learning with flower 0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Federated Learning with flower 0.1 documentation</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="welcome-to-federated-learning-with-flower-s-documentation">
+<h1>Welcome to Federated Learning with flower’s documentation!<a class="headerlink" href="#welcome-to-federated-learning-with-flower-s-documentation" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<span id="document-autoapi/index"></span><section id="api-reference">
+<h2>API Reference<a class="headerlink" href="#api-reference" title="Permalink to this headline">¶</a></h2>
+<p>This page contains auto-generated API reference documentation <a class="footnote-reference brackets" href="#f1" id="id1">1</a>.</p>
+<div class="toctree-wrapper compound">
+<span id="document-autoapi/har/index"></span><section id="module-har">
+<span id="har"></span><h3><a class="reference internal" href="#module-har" title="har"><code class="xref py py-mod docutils literal notranslate"><span class="pre">har</span></code></a><a class="headerlink" href="#module-har" title="Permalink to this headline">¶</a></h3>
+<section id="submodules">
+<h4>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h4>
+<div class="toctree-wrapper compound">
+<span id="document-autoapi/har/har/index"></span><section id="module-har.har">
+<span id="har-har"></span><h5><a class="reference internal" href="#module-har.har" title="har.har"><code class="xref py py-mod docutils literal notranslate"><span class="pre">har.har</span></code></a><a class="headerlink" href="#module-har.har" title="Permalink to this headline">¶</a></h5>
+<p>Inital model for HAR dataset.</p>
+<p>This module defines the neural model and data loaders</p>
+<section id="attributes">
+<h6>Attributes:<a class="headerlink" href="#attributes" title="Permalink to this headline">¶</a></h6>
+<dl class="simple">
+<dt>DATA_ROOT<span class="classifier">str</span></dt><dd><p>Default data directory</p>
+</dd>
+<dt>device<span class="classifier">str</span></dt><dd><p>The device for training <code class="docutils literal notranslate"><span class="pre">cuda</span></code> or <code class="docutils literal notranslate"><span class="pre">cpu</span></code></p>
+</dd>
+<dt>DATA_URL<span class="classifier">str</span></dt><dd><p>Default data url for download</p>
+</dd>
+<dt>model<span class="classifier">object</span></dt><dd><p>Model instance</p>
+</dd>
+</dl>
+</section>
+<section id="notes">
+<h6>Notes:<a class="headerlink" href="#notes" title="Permalink to this headline">¶</a></h6>
+<p>This is module contains some HACKs, and it can be / should be improved.
+For instance importing and exporting layers could use a <code class="docutils literal notranslate"><span class="pre">JSON</span></code> object.
+For this test we stick to python <code class="docutils literal notranslate"><span class="pre">dict</span></code>.</p>
+</section>
+<section id="module-contents">
+<h6>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h6>
+<section id="classes">
+<h7>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h7>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#har.har.NeuralNetwork" title="har.har.NeuralNetwork"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NeuralNetwork</span></code></a></p></td>
+<td><p>Define the Neural Network Model.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="functions">
+<h7>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h7>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#har.har.parse_module" title="har.har.parse_module"><code class="xref py py-obj docutils literal notranslate"><span class="pre">parse_module</span></code></a>(module: collections.OrderedDict) → Tuple[str, str]</p></td>
+<td><p>Parse layer description.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#har.har.load_data" title="har.har.load_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_data</span></code></a>(test_path: str = None, train_path: str = None) → Tuple[torch.utils.data.DataLoader, torch.utils.data.DataLoader]</p></td>
+<td><p>Load datasets.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#har.har.train" title="har.har.train"><code class="xref py py-obj docutils literal notranslate"><span class="pre">train</span></code></a>(model, dataloader, epochs, device) → None</p></td>
+<td><p>Train model.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#har.har.test" title="har.har.test"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test</span></code></a>(model, dataloader, device) → Tuple[float, float]</p></td>
+<td><p>Test the model.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id1">
+<h7>Attributes<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h7>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#har.har.DATA_ROOT" title="har.har.DATA_ROOT"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DATA_ROOT</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#har.har.device" title="har.har.device"><code class="xref py py-obj docutils literal notranslate"><span class="pre">device</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#har.har.DATA_URL" title="har.har.DATA_URL"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DATA_URL</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#har.har.model" title="har.har.model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">model</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py data">
+<dt class="sig sig-object py" id="har.har.DATA_ROOT">
+<span class="sig-prename descclassname"><span class="pre">har.har.</span></span><span class="sig-name descname"><span class="pre">DATA_ROOT</span></span><em class="property"> <span class="pre">=</span> <span class="pre">../../OUTPUT/</span></em><a class="headerlink" href="#har.har.DATA_ROOT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="har.har.device">
+<span class="sig-prename descclassname"><span class="pre">har.har.</span></span><span class="sig-name descname"><span class="pre">device</span></span><a class="headerlink" href="#har.har.device" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="har.har.DATA_URL">
+<span class="sig-prename descclassname"><span class="pre">har.har.</span></span><span class="sig-name descname"><span class="pre">DATA_URL</span></span><em class="property"> <span class="pre">=</span> <span class="pre">https://archive.ics.uci.edu/ml/machine-learning-databases/00240/UCI%20HAR%20Dataset.zip</span></em><a class="headerlink" href="#har.har.DATA_URL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="har.har.parse_module">
+<span class="sig-prename descclassname"><span class="pre">har.har.</span></span><span class="sig-name descname"><span class="pre">parse_module</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">collections.OrderedDict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#har.har.parse_module" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse layer description.</p>
+<p>PyTorch shows a layer description like this:
+‘Linear(in_features=561, out_features=512, bias=True)’
+This module parse this string to get the name of the layer (Linear)
+and the named arguments for this layer with correct types
+(in_features=561, out_features=512, bias=True)</p>
+<dl class="simple">
+<dt>module</dt><dd><p>Dictionary with layer or activation description</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>layer_act</dt><dd><p>Name of the layer or activation</p>
+</dd>
+<dt>kwrds</dt><dd><p>keyword arguments dictionary, useful to recreate the layer</p>
+</dd>
+</dl>
+<p>This is a HACK, and it can be / should be improved.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="har.har.NeuralNetwork">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">har.har.</span></span><span class="sig-name descname"><span class="pre">NeuralNetwork</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_dict</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">collections.OrderedDict</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#har.har.NeuralNetwork" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.nn.Module</span></code></p>
+<p>Define the Neural Network Model.</p>
+<p>The model is defined/loaded here.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="har.har.NeuralNetwork.set_nn">
+<span class="sig-name descname"><span class="pre">set_nn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_dict</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">collections.OrderedDict</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#har.har.NeuralNetwork.set_nn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the network architecture from model_dict or defaults.</p>
+<dl class="simple">
+<dt>model_dict</dt><dd><p>Dictionary with modules parameters</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="har.har.NeuralNetwork.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">torch.Tensor</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">torch.Tensor</span></span></span><a class="headerlink" href="#har.har.NeuralNetwork.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Do a forward pass.</p>
+<dl class="simple">
+<dt>x</dt><dd><p>tensor</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>tensor</dt><dd><p>logits</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="har.har.NeuralNetwork.to_dict">
+<span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span></span></span><a class="headerlink" href="#har.har.NeuralNetwork.to_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a dictionary with network layers.</p>
+<dl class="simple">
+<dt>stack_odict</dt><dd><p>Ordered dictionary with layer configuration</p>
+</dd>
+</dl>
+<p>This is part of a HACK, and it can be / should be improved.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="har.har.NeuralNetwork.from_dict">
+<span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_dict</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">collections.OrderedDict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#har.har.NeuralNetwork.from_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set network layers from dictionary.</p>
+<dl class="simple">
+<dt>model_dict</dt><dd><p>Ordered dictionary with layer configuration</p>
+</dd>
+</dl>
+<p>This is part of a HACK, and it can be / should be improved.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="har.har.NeuralNetwork.to_string">
+<span class="sig-name descname"><span class="pre">to_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#har.har.NeuralNetwork.to_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a string with a dictionary with network layers.</p>
+<dl class="simple">
+<dt>str</dt><dd><p>String eith Ordered dictionary with layer configuration</p>
+</dd>
+</dl>
+<p>This is part of a HACK, and it can be / should be improved.
+We could redifine the <code class="docutils literal notranslate"><span class="pre">__repr__</span></code> instead.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="har.har.NeuralNetwork.from_string">
+<span class="sig-name descname"><span class="pre">from_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_str</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#har.har.NeuralNetwork.from_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set network layers from a string of python dictionary.</p>
+<dl class="simple">
+<dt>model_str</dt><dd><p>Ordered dictionary with layer configuration</p>
+</dd>
+</dl>
+<p>This is part of a HACK, and it can be / should be improved.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="har.har.model">
+<span class="sig-prename descclassname"><span class="pre">har.har.</span></span><span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#har.har.model" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="har.har.load_data">
+<span class="sig-prename descclassname"><span class="pre">har.har.</span></span><span class="sig-name descname"><span class="pre">load_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_path</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_path</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">torch.utils.data.DataLoader</span><span class="p"><span class="pre">,</span> </span><span class="pre">torch.utils.data.DataLoader</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#har.har.load_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load datasets.</p>
+<dl class="simple">
+<dt>test_path</dt><dd><p>Path for test dataset</p>
+</dd>
+<dt>train_path</dt><dd><p>Path for train dataset</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>tuple</dt><dd><p>train DataLoader, test DataLoader</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="har.har.train">
+<span class="sig-prename descclassname"><span class="pre">har.har.</span></span><span class="sig-name descname"><span class="pre">train</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataloader</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epochs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#har.har.train" title="Permalink to this definition">¶</a></dt>
+<dd><p>Train model.</p>
+<dl class="simple">
+<dt>model</dt><dd><p>the model</p>
+</dd>
+<dt>dataloader</dt><dd><p>Data Loader</p>
+</dd>
+<dt>epochs</dt><dd><p>number of epochs</p>
+</dd>
+<dt>device</dt><dd><p>CPU or GPU</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="har.har.test">
+<span class="sig-prename descclassname"><span class="pre">har.har.</span></span><span class="sig-name descname"><span class="pre">test</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataloader</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#har.har.test" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test the model.</p>
+<dl class="simple">
+<dt>model</dt><dd><p>pytorch model</p>
+</dd>
+<dt>dataloader</dt><dd><p>test DataLoader</p>
+</dd>
+<dt>device</dt><dd><p>CPU or GPU</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>tuple</dt><dd><p>test loss, accuracy</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+</section>
+</div>
+</section>
+</section>
+<span id="document-autoapi/harserver/index"></span><section id="module-harserver">
+<span id="harserver"></span><h3><a class="reference internal" href="#module-harserver" title="harserver"><code class="xref py py-mod docutils literal notranslate"><span class="pre">harserver</span></code></a><a class="headerlink" href="#module-harserver" title="Permalink to this headline">¶</a></h3>
+<p>har-server.py script runs a Federated Learning server using flower.</p>
+<p>The script can be run in command line:</p>
+<section id="examples">
+<h4>Examples:<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h4>
+<blockquote>
+<div><p>$./har-server.py - s 0.0.0.0:8080</p>
+</div></blockquote>
+<dl class="simple">
+<dt>or</dt><dd><p>$python har-server.py -s [::]:8080</p>
+</dd>
+<dt>using environment variable HAR_SERVER</dt><dd><p>$HAR_SERVER=[::]:8080 python har-server.py -m 2 -M 2 -r3</p>
+</dd>
+</dl>
+</section>
+<section id="attributes">
+<h4>Attributes:<a class="headerlink" href="#attributes" title="Permalink to this headline">¶</a></h4>
+<dl class="simple">
+<dt>Model_dict<span class="classifier">str</span></dt><dd><p>String that contains the <code class="docutils literal notranslate"><span class="pre">OrderedDict</span></code> with the layers.</p>
+</dd>
+</dl>
+</section>
+<section id="notes">
+<h4>Notes:<a class="headerlink" href="#notes" title="Permalink to this headline">¶</a></h4>
+<p>This is module contains some HACKs, and it can be / should be improved.</p>
+</section>
+<section id="module-contents">
+<h4>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h4>
+<section id="functions">
+<h5>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h5>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#harserver.run_server" title="harserver.run_server"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_server</span></code></a>(servername: str, min_fit_clients: int, min_available_clients: int, number_of_rounds: int, training_set: str = None, test_set: str = None, debug: bool = False) → None</p></td>
+<td><p>Run a Federated Learning server using flower.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#harserver.fit_config" title="harserver.fit_config"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit_config</span></code></a>(rnd: int) → Dict[str, str]</p></td>
+<td><p>Set config dictionary.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id1">
+<h5>Attributes<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h5>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#harserver.Config" title="harserver.Config"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Config</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py data">
+<dt class="sig sig-object py" id="harserver.Config">
+<span class="sig-prename descclassname"><span class="pre">harserver.</span></span><span class="sig-name descname"><span class="pre">Config</span></span><a class="headerlink" href="#harserver.Config" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="harserver.run_server">
+<span class="sig-prename descclassname"><span class="pre">harserver.</span></span><span class="sig-name descname"><span class="pre">run_server</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">servername</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_fit_clients</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_available_clients</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">number_of_rounds</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">training_set</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_set</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#harserver.run_server" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run a Federated Learning server using flower.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>servername</strong> – The FQDN or IP address with port, ex. mydomain.com:8080</p></li>
+<li><p><strong>min_fit_clients</strong> – Minimum number of clients to be sampled for the next round of training</p></li>
+<li><p><strong>min_available_clients</strong> – Minimum number of clients that need to be connected to the server
+before a training round</p></li>
+<li><p><strong>number_of_rounds</strong> – Number of training rounds</p></li>
+<li><p><strong>training_set</strong> – training dataset path</p></li>
+<li><p><strong>test_set</strong> – test dataset path</p></li>
+<li><p><strong>debug</strong> – Flag for trigger some debug strings</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="harserver.fit_config">
+<span class="sig-prename descclassname"><span class="pre">harserver.</span></span><span class="sig-name descname"><span class="pre">fit_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rnd</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#harserver.fit_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set config dictionary.</p>
+<dl class="simple">
+<dt>rnd</dt><dd><p>number of rounds</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>config</dt><dd><p>we should specify server/strategy configuration here</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+</section>
+<span id="document-autoapi/harclient/index"></span><section id="module-harclient">
+<span id="harclient"></span><h3><a class="reference internal" href="#module-harclient" title="harclient"><code class="xref py py-mod docutils literal notranslate"><span class="pre">harclient</span></code></a><a class="headerlink" href="#module-harclient" title="Permalink to this headline">¶</a></h3>
+<p>har-client.py script runs a Federated Learning client using flower.</p>
+<p>The script can be run in command line:</p>
+<section id="examples">
+<h4>Examples:<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h4>
+<blockquote>
+<div><dl class="simple">
+<dt>$./har-client.py -s localhost:8080</dt><dd><p>-T../../OUTPUT/2-ONS/train/2_ALL_train.csv
+-t../../OUTPUT/2-ONS/test/2_ALL_test.csv</p>
+</dd>
+</dl>
+</div></blockquote>
+<dl class="simple">
+<dt>or</dt><dd><dl class="simple">
+<dt>$python har-client.py -s localhost:8080</dt><dd><p>-T../../OUTPUT/2-ONS/train/2_ALL_train.csv
+-t../../OUTPUT/2-ONS/test/2_ALL_test.csv</p>
+</dd>
+</dl>
+</dd>
+<dt>using environment variable HAR_SERVER</dt><dd><dl class="simple">
+<dt>$HAR_SERVER=[::]:8080 python har-client.py</dt><dd><p>-T../../OUTPUT/2-ONS/train/2_ALL_train.csv
+-t../../OUTPUT/2-ONS/test/2_ALL_test.csv</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+<section id="attributes">
+<h4>Attributes:<a class="headerlink" href="#attributes" title="Permalink to this headline">¶</a></h4>
+<dl class="simple">
+<dt>DEVICE<span class="classifier">str</span></dt><dd><p>The device for training <code class="docutils literal notranslate"><span class="pre">cuda</span></code> or <code class="docutils literal notranslate"><span class="pre">cpu</span></code></p>
+</dd>
+</dl>
+</section>
+<section id="module-contents">
+<h4>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h4>
+<section id="classes">
+<h5>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h5>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#harclient.HARClient" title="harclient.HARClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">HARClient</span></code></a></p></td>
+<td><p>Flower client implementing for HAR data using PyTorch.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="functions">
+<h5>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h5>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#harclient.main" title="harclient.main"><code class="xref py py-obj docutils literal notranslate"><span class="pre">main</span></code></a>(servername: str, training_set: str, test_set: str, debug: bool) → None</p></td>
+<td><p>Run a Federated Learning client using flower.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#harclient.set_plot" title="harclient.set_plot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_plot</span></code></a>(number_of_rounds, title)</p></td>
+<td><p>Set simple plot for accuracy vs round.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id1">
+<h5>Attributes<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h5>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#harclient.USE_FEDBN" title="harclient.USE_FEDBN"><code class="xref py py-obj docutils literal notranslate"><span class="pre">USE_FEDBN</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#harclient.DEVICE" title="harclient.DEVICE"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DEVICE</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py data">
+<dt class="sig sig-object py" id="harclient.USE_FEDBN">
+<span class="sig-prename descclassname"><span class="pre">harclient.</span></span><span class="sig-name descname"><span class="pre">USE_FEDBN</span></span><em class="property"> <span class="pre">:bool</span> <span class="pre">=</span> <span class="pre">False</span></em><a class="headerlink" href="#harclient.USE_FEDBN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="harclient.DEVICE">
+<span class="sig-prename descclassname"><span class="pre">harclient.</span></span><span class="sig-name descname"><span class="pre">DEVICE</span></span><em class="property"> <span class="pre">:str</span></em><a class="headerlink" href="#harclient.DEVICE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="harclient.HARClient">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">harclient.</span></span><span class="sig-name descname"><span class="pre">HARClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">object</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trainloader</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">torch.utils.data.DataLoader</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">testloader</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">torch.utils.data.DataLoader</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_set_name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#harclient.HARClient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">flwr.client.NumPyClient</span></code></p>
+<p>Flower client implementing for HAR data using PyTorch.</p>
+<p>Client implementation.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="harclient.HARClient.get_parameters">
+<span class="sig-name descname"><span class="pre">get_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#harclient.HARClient.get_parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get parameters.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="harclient.HARClient.set_parameters">
+<span class="sig-name descname"><span class="pre">set_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#harclient.HARClient.set_parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set parameters.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="harclient.HARClient.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#harclient.HARClient.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set model parameters, train model, return updated model parameters.</p>
+<dl class="simple">
+<dt>parameters</dt><dd><p>model parameters as a list of NumPy ndarrays, excluding
+parameters of BN layers when using FedBN</p>
+</dd>
+<dt>config</dt><dd><p>complete</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>tuple</dt><dd><p>updated parameters, size of train dataset, None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="harclient.HARClient.evaluate">
+<span class="sig-name descname"><span class="pre">evaluate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">float</span><span class="p"><span class="pre">,</span> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#harclient.HARClient.evaluate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set model parameters, evaluate model on local test dataset,
+and return result.</p>
+<dl class="simple">
+<dt>parameters</dt><dd><p>model parameters as a list of NumPy ndarrays, excluding
+parameters of BN layers when using FedBN</p>
+</dd>
+<dt>config</dt><dd><p>complete.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>tuple</dt><dd><p>loss, size, and accuracy</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="harclient.main">
+<span class="sig-prename descclassname"><span class="pre">harclient.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">servername</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">training_set</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_set</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#harclient.main" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run a Federated Learning client using flower.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>servername</strong> – The FQDN or IP address with port, ex. mydomain.com:8080</p></li>
+<li><p><strong>training_set</strong> – training dataset path</p></li>
+<li><p><strong>test_set</strong> – test dataset path</p></li>
+<li><p><strong>debug</strong> – Flag for trigger some debug strings</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="harclient.set_plot">
+<span class="sig-prename descclassname"><span class="pre">harclient.</span></span><span class="sig-name descname"><span class="pre">set_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">number_of_rounds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#harclient.set_plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set simple plot for accuracy vs round.</p>
+</dd></dl>
+
+</section>
+</section>
+</section>
+<span id="document-autoapi/server/index"></span><section id="module-server">
+<span id="server"></span><h3><a class="reference internal" href="#module-server" title="server"><code class="xref py py-mod docutils literal notranslate"><span class="pre">server</span></code></a><a class="headerlink" href="#module-server" title="Permalink to this headline">¶</a></h3>
+<section id="module-contents">
+<h4>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h4>
+<dl class="py data">
+<dt class="sig sig-object py" id="server.servername">
+<span class="sig-prename descclassname"><span class="pre">server.</span></span><span class="sig-name descname"><span class="pre">servername</span></span><em class="property"> <span class="pre">=</span></em><a class="headerlink" href="#server.servername" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+</section>
+<span id="document-autoapi/simplephe/index"></span><section id="module-simplephe">
+<span id="simplephe"></span><h3><a class="reference internal" href="#module-simplephe" title="simplephe"><code class="xref py py-mod docutils literal notranslate"><span class="pre">simplephe</span></code></a><a class="headerlink" href="#module-simplephe" title="Permalink to this headline">¶</a></h3>
+<p>Simple Paillier Homomorphic Encrypted Aggregation.</p>
+<p>Implement secure aggregation strategy based on flower implementation
+<a class="reference external" href="https://github.com/adap/flower/blob/main/src/py/flwr/server/strategy/fedavg.py">https://github.com/adap/flower/blob/main/src/py/flwr/server/strategy/fedavg.py</a></p>
+<section id="module-contents">
+<h4>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h4>
+<section id="classes">
+<h5>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h5>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#simplephe.EncArray" title="simplephe.EncArray"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EncArray</span></code></a></p></td>
+<td><p>Define an array for encryption/decryption.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#simplephe.KeyGenerator" title="simplephe.KeyGenerator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KeyGenerator</span></code></a></p></td>
+<td><p>Implement key generator for Paillier cryptosystem.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#simplephe.SimplePaillierAvg" title="simplephe.SimplePaillierAvg"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SimplePaillierAvg</span></code></a></p></td>
+<td><p>Implement secure aggregation strategy.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="functions">
+<h5>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h5>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#simplephe.encrypt_iterable" title="simplephe.encrypt_iterable"><code class="xref py py-obj docutils literal notranslate"><span class="pre">encrypt_iterable</span></code></a>(public_key, x: PlainIterable)</p></td>
+<td><p>Encrypt an iterable of floats or integers.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#simplephe.decrypt_iterable" title="simplephe.decrypt_iterable"><code class="xref py py-obj docutils literal notranslate"><span class="pre">decrypt_iterable</span></code></a>(private_key, x: EncryptedIterable) → PlainIterable</p></td>
+<td><p>Encrypt an iterable of floats or integers.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#simplephe.serialize_encrypted" title="simplephe.serialize_encrypted"><code class="xref py py-obj docutils literal notranslate"><span class="pre">serialize_encrypted</span></code></a>(enc: EncryptedNumberType, exponent: int) → str</p></td>
+<td><p>Serialize an encrypted number.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#simplephe.load_encrypted_number" title="simplephe.load_encrypted_number"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_encrypted_number</span></code></a>(enc: int, exponent: int, public_key: PublicKeyType)</p></td>
+<td><p>Load an encrypted number object.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="attributes">
+<h5>Attributes<a class="headerlink" href="#attributes" title="Permalink to this headline">¶</a></h5>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#simplephe.EncryptedNumberType" title="simplephe.EncryptedNumberType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EncryptedNumberType</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#simplephe.PublicKeyType" title="simplephe.PublicKeyType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PublicKeyType</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#simplephe.PrivateKeyType" title="simplephe.PrivateKeyType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PrivateKeyType</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#simplephe.PlainIterable" title="simplephe.PlainIterable"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlainIterable</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#simplephe.EncryptedIterable" title="simplephe.EncryptedIterable"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EncryptedIterable</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py data">
+<dt class="sig sig-object py" id="simplephe.EncryptedNumberType">
+<span class="sig-prename descclassname"><span class="pre">simplephe.</span></span><span class="sig-name descname"><span class="pre">EncryptedNumberType</span></span><a class="headerlink" href="#simplephe.EncryptedNumberType" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="simplephe.PublicKeyType">
+<span class="sig-prename descclassname"><span class="pre">simplephe.</span></span><span class="sig-name descname"><span class="pre">PublicKeyType</span></span><a class="headerlink" href="#simplephe.PublicKeyType" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="simplephe.PrivateKeyType">
+<span class="sig-prename descclassname"><span class="pre">simplephe.</span></span><span class="sig-name descname"><span class="pre">PrivateKeyType</span></span><a class="headerlink" href="#simplephe.PrivateKeyType" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="simplephe.PlainIterable">
+<span class="sig-prename descclassname"><span class="pre">simplephe.</span></span><span class="sig-name descname"><span class="pre">PlainIterable</span></span><a class="headerlink" href="#simplephe.PlainIterable" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="simplephe.EncryptedIterable">
+<span class="sig-prename descclassname"><span class="pre">simplephe.</span></span><span class="sig-name descname"><span class="pre">EncryptedIterable</span></span><a class="headerlink" href="#simplephe.EncryptedIterable" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="simplephe.encrypt_iterable">
+<span class="sig-prename descclassname"><span class="pre">simplephe.</span></span><span class="sig-name descname"><span class="pre">encrypt_iterable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">public_key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="index.html#simplephe.PlainIterable" title="simplephe.PlainIterable"><span class="pre">PlainIterable</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#simplephe.encrypt_iterable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Encrypt an iterable of floats or integers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>public_key</strong> – The public key object</p></li>
+<li><p><strong>x</strong> – Iterable of floats</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>map of EncryptedNumber</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="simplephe.decrypt_iterable">
+<span class="sig-prename descclassname"><span class="pre">simplephe.</span></span><span class="sig-name descname"><span class="pre">decrypt_iterable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">private_key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="index.html#simplephe.EncryptedIterable" title="simplephe.EncryptedIterable"><span class="pre">EncryptedIterable</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="index.html#simplephe.PlainIterable" title="simplephe.PlainIterable"><span class="pre">PlainIterable</span></a></span></span><a class="headerlink" href="#simplephe.decrypt_iterable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Encrypt an iterable of floats or integers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>private_key</strong> – The private key object</p></li>
+<li><p><strong>x</strong> – Iterable of encrypted objects</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list of decrypted numbers</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="simplephe.serialize_encrypted">
+<span class="sig-prename descclassname"><span class="pre">simplephe.</span></span><span class="sig-name descname"><span class="pre">serialize_encrypted</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">enc</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="index.html#simplephe.EncryptedNumberType" title="simplephe.EncryptedNumberType"><span class="pre">EncryptedNumberType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">exponent</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#simplephe.serialize_encrypted" title="Permalink to this definition">¶</a></dt>
+<dd><p>Serialize an encrypted number.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>private_key</strong> – The private key</p></li>
+<li><p><strong>x</strong> – Iterable of encrypted objects</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list of decrypted numbers</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="simplephe.load_encrypted_number">
+<span class="sig-prename descclassname"><span class="pre">simplephe.</span></span><span class="sig-name descname"><span class="pre">load_encrypted_number</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">enc</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exponent</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">public_key</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="index.html#simplephe.PublicKeyType" title="simplephe.PublicKeyType"><span class="pre">PublicKeyType</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#simplephe.load_encrypted_number" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load an encrypted number object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>enc</strong> – encrypted serialized number as integer</p></li>
+<li><p><strong>exponent</strong> – The exponent (precision)</p></li>
+<li><p><strong>public_key</strong> – The public key</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list of decrypted numbers</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="simplephe.EncArray">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">simplephe.</span></span><span class="sig-name descname"><span class="pre">EncArray</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buffer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">strides</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#simplephe.EncArray" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></p>
+<p>Define an array for encryption/decryption.</p>
+<p>This subclasses numpy ndarray, that allow us to leverage all the
+calculation machinery of numpy on cleartext and attempts to extend
+for addition and multiplication in case of encrypted numbers where
+applicable.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="simplephe.EncArray.__array_finalize__">
+<span class="sig-name descname"><span class="pre">__array_finalize__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#simplephe.EncArray.__array_finalize__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a custom attribute to this subclass EncArray.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simplephe.EncArray.__add__">
+<span class="sig-name descname"><span class="pre">__add__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#simplephe.EncArray.__add__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Override addition to allow encrypted objects.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simplephe.EncArray.encrypt">
+<span class="sig-name descname"><span class="pre">encrypt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">public_key</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="index.html#simplephe.EncArray" title="simplephe.EncArray"><span class="pre">EncArray</span></a></span></span><a class="headerlink" href="#simplephe.EncArray.encrypt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Encrypt this array.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simplephe.EncArray.decrypt">
+<span class="sig-name descname"><span class="pre">decrypt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">private_key</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="index.html#simplephe.EncArray" title="simplephe.EncArray"><span class="pre">EncArray</span></a></span></span><a class="headerlink" href="#simplephe.EncArray.decrypt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decrypt this array.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simplephe.EncArray.serialize">
+<span class="sig-name descname"><span class="pre">serialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exp</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">-</span> <span class="pre">32</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span></span></span><a class="headerlink" href="#simplephe.EncArray.serialize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Serialize EncArray of ciphertext objects.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>List with serialized ciphertext objects as strings</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>List</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simplephe.EncArray.serialize_ndarray">
+<span class="sig-name descname"><span class="pre">serialize_ndarray</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exp</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">-</span> <span class="pre">32</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray</span></span></span><a class="headerlink" href="#simplephe.EncArray.serialize_ndarray" title="Permalink to this definition">¶</a></dt>
+<dd><p>Serialize EncArray of ciphertext objects.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>ndarray with serialized ciphertext objects as strings</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>numpy.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simplephe.EncArray.deserialize">
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">deserialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enc</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">public_key</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">phe.PaillierPublicKey</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">32</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="index.html#simplephe.EncArray" title="simplephe.EncArray"><span class="pre">EncArray</span></a></span></span><a class="headerlink" href="#simplephe.EncArray.deserialize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize an iterable of strings and return EncArray.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>enc</strong> – Iterable of strings, serialized ciphertexts</p></li>
+<li><p><strong>public_key</strong> – The public key used to get the ciphertexts</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Array with ciphertext objects</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="index.html#simplephe.EncArray" title="simplephe.EncArray">EncArray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simplephe.EncArray.deserialize_ndarray">
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">deserialize_ndarray</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enc</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">public_key</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">phe.PaillierPublicKey</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">32</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="index.html#simplephe.EncArray" title="simplephe.EncArray"><span class="pre">EncArray</span></a></span></span><a class="headerlink" href="#simplephe.EncArray.deserialize_ndarray" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize a numpy ndarray of strings and return EncArray.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>enc</strong> – ndarray with serialized ciphertext objects as strings</p></li>
+<li><p><strong>public_key</strong> – The public key used to get the ciphertexts</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Array with ciphertext objects</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="index.html#simplephe.EncArray" title="simplephe.EncArray">EncArray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="simplephe.KeyGenerator">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">simplephe.</span></span><span class="sig-name descname"><span class="pre">KeyGenerator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key_length</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">1024</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#simplephe.KeyGenerator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Implement key generator for Paillier cryptosystem.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="simplephe.KeyGenerator.load_pkd">
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">load_pkd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="index.html#simplephe.KeyGenerator" title="simplephe.KeyGenerator"><span class="pre">KeyGenerator</span></a></span></span><a class="headerlink" href="#simplephe.KeyGenerator.load_pkd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load keys from pickle, do not generate them.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simplephe.KeyGenerator.load">
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="index.html#simplephe.KeyGenerator" title="simplephe.KeyGenerator"><span class="pre">KeyGenerator</span></a></span></span><a class="headerlink" href="#simplephe.KeyGenerator.load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load keys from JWK (JSON) files. Do not generate new keys.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simplephe.KeyGenerator.load_public_pkd">
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">load_public_pkd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'public.key'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="index.html#simplephe.KeyGenerator" title="simplephe.KeyGenerator"><span class="pre">KeyGenerator</span></a></span></span><a class="headerlink" href="#simplephe.KeyGenerator.load_public_pkd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load public key only from pickle. Do not generate new keys.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simplephe.KeyGenerator.load_public">
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">load_public</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'public_key.json'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="index.html#simplephe.KeyGenerator" title="simplephe.KeyGenerator"><span class="pre">KeyGenerator</span></a></span></span><a class="headerlink" href="#simplephe.KeyGenerator.load_public" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load public key from JWK (JSON) file. Do not generate new keys.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simplephe.KeyGenerator.kid_metadata">
+<span class="sig-name descname"><span class="pre">kid_metadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kind</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#simplephe.KeyGenerator.kid_metadata" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate kid metadata string.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simplephe.KeyGenerator.public_key_todict">
+<span class="sig-name descname"><span class="pre">public_key_todict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#simplephe.KeyGenerator.public_key_todict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Export public key to python dict.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simplephe.KeyGenerator.public_key_fromdict">
+<span class="sig-name descname"><span class="pre">public_key_fromdict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">public_key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#simplephe.KeyGenerator.public_key_fromdict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Import public key from python dict.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simplephe.KeyGenerator.private_key_todict">
+<span class="sig-name descname"><span class="pre">private_key_todict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#simplephe.KeyGenerator.private_key_todict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Export private key to python dict.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simplephe.KeyGenerator.save_public_key_pkd">
+<span class="sig-name descname"><span class="pre">save_public_key_pkd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'public.key'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#simplephe.KeyGenerator.save_public_key_pkd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save the public key using pickle.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filename</strong> – The name for public key file</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simplephe.KeyGenerator.save_public_key">
+<span class="sig-name descname"><span class="pre">save_public_key</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'public_key.json'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#simplephe.KeyGenerator.save_public_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save the public key in a JWK format, JSON file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filename</strong> – The name for public key json file</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simplephe.KeyGenerator.save_private_key_pkd">
+<span class="sig-name descname"><span class="pre">save_private_key_pkd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'private.key'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#simplephe.KeyGenerator.save_private_key_pkd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save the private key using pickle.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filename</strong> – The name for private key</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simplephe.KeyGenerator.save_private_key">
+<span class="sig-name descname"><span class="pre">save_private_key</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'private_key.json'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#simplephe.KeyGenerator.save_private_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save the private key in a JWK format, JSON file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filename</strong> – The name for private key json file</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simplephe.KeyGenerator.save_keys_pkd">
+<span class="sig-name descname"><span class="pre">save_keys_pkd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#simplephe.KeyGenerator.save_keys_pkd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save the public and private keys using pickle.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simplephe.KeyGenerator.save_keys">
+<span class="sig-name descname"><span class="pre">save_keys</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#simplephe.KeyGenerator.save_keys" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save the public and private keys in JWK format, JSON files.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simplephe.KeyGenerator.load_public_key_pkd">
+<span class="sig-name descname"><span class="pre">load_public_key_pkd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'public.key'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#simplephe.KeyGenerator.load_public_key_pkd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the public key using pickle.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filename</strong> – The name for public key file</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simplephe.KeyGenerator.load_public_key">
+<span class="sig-name descname"><span class="pre">load_public_key</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'public_key.json'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#simplephe.KeyGenerator.load_public_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the public key from JSON file, JWK format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filename</strong> – The name for public key json file</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simplephe.KeyGenerator.load_private_key_pkd">
+<span class="sig-name descname"><span class="pre">load_private_key_pkd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'private.key'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#simplephe.KeyGenerator.load_private_key_pkd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the private key using pickle.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filename</strong> – The name for private key file</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>key</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simplephe.KeyGenerator.load_private_key">
+<span class="sig-name descname"><span class="pre">load_private_key</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'private_key.json'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#simplephe.KeyGenerator.load_private_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the private key from JSON file, JWK format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filename</strong> – The name for private key json file</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simplephe.KeyGenerator.load_keys_pkd">
+<span class="sig-name descname"><span class="pre">load_keys_pkd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#simplephe.KeyGenerator.load_keys_pkd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the public and private keys using pickle.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simplephe.KeyGenerator.load_keys">
+<span class="sig-name descname"><span class="pre">load_keys</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#simplephe.KeyGenerator.load_keys" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the public and private keys from JWK, JSON file.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="simplephe.SimplePaillierAvg">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">simplephe.</span></span><span class="sig-name descname"><span class="pre">SimplePaillierAvg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fraction_fit</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fraction_eval</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_fit_clients</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_eval_clients</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_available_clients</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eval_fn</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">flwr.common.Weights</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">flwr.common.Scalar</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on_fit_config_fn</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">flwr.common.Scalar</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on_evaluate_config_fn</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">flwr.common.Scalar</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">accept_failures</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_parameters</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">flwr.common.Parameters</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#simplephe.SimplePaillierAvg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">flwr.server.strategy.fedavg.FedAvg</span></code></p>
+<p>Implement secure aggregation strategy.</p>
+<p>Extending the FedAvg class…</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="simplephe.SimplePaillierAvg.aggregate_fit">
+<span class="sig-name descname"><span class="pre">aggregate_fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rnd</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">results</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">flwr.server.client_proxy.ClientProxy</span><span class="p"><span class="pre">,</span> </span><span class="pre">flwr.common.FitRes</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">failures</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">BaseException</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">flwr.common.Parameters</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">flwr.common.Scalar</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#simplephe.SimplePaillierAvg.aggregate_fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Aggregate fit results using weighted average.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simplephe.SimplePaillierAvg.evaluate">
+<span class="sig-name descname"><span class="pre">evaluate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">flwr.common.Parameters</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">flwr.common.Scalar</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#simplephe.SimplePaillierAvg.evaluate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluate model parameters using an evaluation function.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+</section>
+</div>
+<dl class="footnote brackets">
+<dt class="label" id="f1"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>Created with <a class="reference external" href="https://github.com/readthedocs/sphinx-autoapi">sphinx-autoapi</a></p>
+</dd>
+</dl>
+</section>
+</div>
+</section>
+<section id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table of Contents</a></h3>
+  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-autoapi/index">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="index.html#document-autoapi/har/index"><code class="xref py py-mod docutils literal notranslate"><span class="pre">har</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#document-autoapi/harserver/index"><code class="xref py py-mod docutils literal notranslate"><span class="pre">harserver</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#document-autoapi/harclient/index"><code class="xref py py-mod docutils literal notranslate"><span class="pre">harclient</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#document-autoapi/server/index"><code class="xref py py-mod docutils literal notranslate"><span class="pre">server</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#document-autoapi/simplephe/index"><code class="xref py py-mod docutils literal notranslate"><span class="pre">simplephe</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="nav-item nav-item-0"><a href="#">Federated Learning with flower 0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Federated Learning with flower 0.1 documentation</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, hlg-mos-ml-private.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.1.2.
+    </div>
+  </body>
+</html>
