@@ -36,6 +36,6 @@ $(window).resize(function(){
         $("li.nav-item-0 a").text("Top");
     }
     else {
-        $("li.nav-item-0 a").text("Paillier Flower Test 0.1 documentation");
+        $("li.nav-item-0 a").text("Federated Learning with flower 0.1 documentation");
     }
 });

@@ -5,9 +5,12 @@
 
 # Except for these...
 !.gitignore
-!har.py
-!server.py
-!har-client1.ipynb
-!har_client.py
-!flower-test-1.gif
+!har
+!harserver.py
+!harclient.py
 !README.md
+!launch-test.sh
+!flower-phe.gif
+!simplephe
+!results.png
+
