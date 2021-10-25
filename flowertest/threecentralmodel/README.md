@@ -24,14 +24,14 @@ Please make sure that conda and git are installed.
         pip install flwr torch torchvision click matplotlib
 4. Change dir
 
-        cd flower-test/3-central-model
+        cd flowertest/threecentralmodel
 4. Export environment variable for servername and port and launch server 
 
-        export HAR_SERVER=[::]:8080 python server.py
+        export HAR_SERVER=[::]:8080 python harserver.py
 
 - Or using command line options:
 
-        Usage: har-server.py [OPTIONS]
+        Usage: harserver.py [OPTIONS]
 
         Options:
           -s, --servername TEXT
@@ -43,7 +43,7 @@ Please make sure that conda and git are installed.
           --help                          Show this message and exit.
 Example:
 
-        python har-server.py -s localhost:8080 -m 2 -M 2 -r3
+        python harserver.py -s localhost:8080 -m 2 -M 2 -r3
 
 
 ## Client instructions
@@ -61,17 +61,17 @@ Please make sure that conda and git are installed.
         pip install flwr torch torchvision click
 4. Change dir 
         
-        cd flower-test/3-central-model
+        cd flowertest/threecentralmodel
 4. Export environment variable for servername and port and launch client 
         
-        HAR_SERVER=localhost:8080 TEST_PATH=path_to_test_dataset TRAIN_PATH=path_to_train_dataset python har-client.py
+        HAR_SERVER=localhost:8080 TEST_PATH=path_to_test_dataset TRAIN_PATH=path_to_train_dataset python harclient.py
 - Example:
         
-        TEST_PATH=../../OUTPUT/3\ -\ STATCAN/test/3_ALL_test.csv TRAIN_PATH=../../OUTPUT/3\ -\ STATCAN/train/3_ALL_train.csv HAR_SERVER=localhost:8080 python har-client.py
+        TEST_PATH=../../OUTPUT/3\ -\ STATCAN/test/3_ALL_test.csv TRAIN_PATH=../../OUTPUT/3\ -\ STATCAN/train/3_ALL_train.csv HAR_SERVER=localhost:8080 python harclient.py
         
 - Or using command line options:
 
-        Usage: har-client.py [OPTIONS]
+        Usage: harclient.py [OPTIONS]
 
         Load data, start HAR Client.
 
@@ -84,7 +84,7 @@ Please make sure that conda and git are installed.
 
 - Example:
 
-        python har-client.py -s localhost:8080 -T../../OUTPUT/3\ -\ STATCAN/train/3_ALL_train.csv -t../../OUTPUT/3\ -\ STATCAN/test/3_ALL_test.csv
+        python harclient.py -s localhost:8080 -T../../OUTPUT/3\ -\ STATCAN/train/3_ALL_train.csv -t../../OUTPUT/3\ -\ STATCAN/test/3_ALL_test.csv
 
 6. Because we need another client to start and finish the training, repeat steps 4-5 in another shell.
 

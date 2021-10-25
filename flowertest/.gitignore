@@ -6,9 +6,9 @@
 
 # Except for these...
 !.gitignore
-!one_plainavg
+!oneplainavg
 !README.md
-!two_fourclients
-!three_centralmodel
-!four_paillier
+!twofourclients
+!threecentralmodel
+!fourpaillier
 !__init.py__

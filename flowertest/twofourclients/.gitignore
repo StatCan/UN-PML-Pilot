@@ -6,8 +6,8 @@
 # Except for these...
 !.gitignore
 !har.py
-!har_server.py
-!har_client.ipynb
+!harserver.py
+!harclient.ipynb
 !har-client.py
 !README.md
 !flower-4-clients.gif

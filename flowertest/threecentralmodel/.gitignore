@@ -6,8 +6,8 @@
 # Except for these...
 !.gitignore
 !har.py
-!har_server.py
-!har_client.py
+!harserver.py
+!harclient.py
 !README.md
 !launch-test.sh
 !flower-ca.gif
