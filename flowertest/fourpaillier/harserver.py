@@ -1,16 +1,16 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-"""har-server.py script runs a Federated Learning server using flower.
+"""harserver.py script runs a Federated Learning server using flower.
 
 The script can be run in command line:
 
 Examples:
 ---------
-    $./har-server.py - s 0.0.0.0:8080
+    $./harserver.py - s 0.0.0.0:8080
 or
-    $python har-server.py -s [::]:8080
+    $python harserver.py -s [::]:8080
 using environment variable HAR_SERVER
-    $HAR_SERVER=[::]:8080 python har-server.py -m 2 -M 2 -r3
+    $HAR_SERVER=[::]:8080 python harserver.py -m 2 -M 2 -r3
 
 Attributes:
 -----------
@@ -40,9 +40,11 @@ Config = {}
 
 @click.command()
 @click.option(
-    "-s", "--servername", prompt=False, default=lambda: os.environ.get("HAR_SERVER", "")
+    "-s", "--servername", prompt=False,
+    default=lambda: os.environ.get("HAR_SERVER", "")
 )
-@click.option("-m", "--min_fit_clients", prompt=False, default=4, type=int)
+@click.option("-m", "--min_fit_clients", prompt=False,
+              default=4, type=int)
 @click.option(
     "-M",
     "--min_available_clients",
@@ -52,7 +54,8 @@ Config = {}
     type=int,
 )
 @click.option(
-    "-r", "--number_of_rounds", prompt=False, default=3, show_default=True, type=int
+    "-r", "--number_of_rounds", prompt=False, default=3,
+    show_default=True, type=int
 )
 @click.option(
     "-T",
@@ -61,7 +64,8 @@ Config = {}
     default=lambda: os.environ.get("TRAIN_PATH", ""),
 )
 @click.option(
-    "-t", "--test_set", prompt=False, default=lambda: os.environ.get("TEST_PATH", "")
+    "-t", "--test_set", prompt=False,
+    default=lambda: os.environ.get("TEST_PATH", "")
 )
 @click.option("-d", "--debug", prompt=False, default=False)
 def run_server(
@@ -121,7 +125,8 @@ def run_server(
             ),
             fg="green",
         )
-        secho("Number of training rounds = {}".format(number_of_rounds), fg="green")
+        secho("Number of training rounds = {}".format(number_of_rounds),
+              fg="green")
         print()
         secho("LISTENING", blink=True, bold=True)
         global Config

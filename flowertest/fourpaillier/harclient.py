@@ -1,16 +1,16 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-r"""har-client.py script runs a Federated Learning client using flower.
+r"""harclient.py script runs a Federated Learning client using flower.
 
 The script can be run in command line:
 
 Examples:
 ---------
-    $./har-client.py -s localhost:8080
+    $./harclient.py -s localhost:8080
         -T../../OUTPUT/2\ -\ ONS/train/2_ALL_train.csv
         -t../../OUTPUT/2\ -\ ONS/test/2_ALL_test.csv
 or
-    $python har-client.py -s localhost:8080
+    $python harclient.py -s localhost:8080
         -T../../OUTPUT/2\ -\ ONS/train/2_ALL_train.csv
         -t../../OUTPUT/2\ -\ ONS/test/2_ALL_test.csv
 using environment variable HAR_SERVER
@@ -25,6 +25,7 @@ DEVICE : str
 
 """
 import os
+import enum
 from collections import OrderedDict
 from typing import Dict, List, Tuple
 
@@ -41,6 +42,15 @@ import simplephe.simplephe as sp
 USE_FEDBN: bool = False
 
 DEVICE: str = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+
+
+class NSO(enum.Enum):
+    """Identify each NSO."""
+
+    CBS = 0
+    ISTAT = 1
+    ONS = 2
+    STATCAN = 3
 
 
 class HARClient(fl.client.NumPyClient):
@@ -79,7 +89,8 @@ class HARClient(fl.client.NumPyClient):
         self.first_evaluation_call = True
         self.debug = debug
         self.keygen = sp.KeyGenerator.load()
-        self.test_set_name = test_set_name
+        self.test_set_name =\
+            NSO(int(str(os.path.basename(test_set_name)).split("_")[0]))
 
     def get_parameters(self) -> List[np.ndarray]:
         """Get parameters."""
@@ -88,7 +99,8 @@ class HARClient(fl.client.NumPyClient):
         encrypted_parameters = []
         for n, (name, val) in enumerate(self.model.state_dict().items()):
             if n % 2 != 0 or n == 4:
-                secho(f"Encrypting {name} {val.cpu().numpy().shape}", fg="yellow")
+                secho(f"Encrypting {name} {val.cpu().numpy().shape}",
+                      fg="yellow")
                 enc_ndarray = (
                     sp.EncArray(val.cpu().numpy())
                     .encrypt(self.keygen.public_key)
@@ -97,7 +109,8 @@ class HARClient(fl.client.NumPyClient):
                 print(f"Encrypted ndarray shape {enc_ndarray.shape}")
                 encrypted_parameters.append(enc_ndarray)
             else:
-                secho(f"Not encrypted {name} {val.cpu().numpy().shape}", fg="blue")
+                secho(f"Not encrypted {name} {val.cpu().numpy().shape}",
+                      fg="blue")
                 encrypted_parameters.append(val.cpu().numpy())
         return encrypted_parameters
 
@@ -152,7 +165,8 @@ class HARClient(fl.client.NumPyClient):
         self.round = int(config["round"])
         # create plots only at first evaluation or maybe round=0
         if self.first_evaluation_call:
-            self.ax, self.lines = set_plot(config["num_rounds"], self.test_set_name)
+            self.ax, self.lines = set_plot(config["num_rounds"],
+                                           self.test_set_name)
             self.first_evaluation_call = False
         for n, e in enumerate(parameters):
             # if need to check for ciphertexts
@@ -196,17 +210,23 @@ class HARClient(fl.client.NumPyClient):
         # plot something
         # self.round_counter += 1
         if self.lines:
-            self.lines.set_data(
-                np.append(self.lines.get_xdata(), self.round),
-                np.append(self.lines.get_ydata(), accuracy),
+            self.lines[0].set_data(
+                np.append(self.lines[0].get_xdata(), self.round),
+                np.append(self.lines[0].get_ydata(), accuracy),
             )
-            self.lines.figure.canvas.flush_events()
+            self.lines[0].figure.canvas.flush_events()
+            self.lines[1].set_data(
+                np.append(self.lines[1].get_xdata(), self.round),
+                np.append(self.lines[1].get_ydata(), loss),
+            )
+            self.lines[1].figure.canvas.flush_events()
         return float(loss), len(self.testloader), {"accuracy": float(accuracy)}
 
 
 @click.command()
 @click.option(
-    "-s", "--servername", prompt=False, default=lambda: os.environ.get("HAR_SERVER", "")
+    "-s", "--servername", prompt=False,
+    default=lambda: os.environ.get("HAR_SERVER", "")
 )
 @click.option(
     "-T",
@@ -215,10 +235,12 @@ class HARClient(fl.client.NumPyClient):
     default=lambda: os.environ.get("TRAIN_PATH", ""),
 )
 @click.option(
-    "-t", "--test_set", prompt=False, default=lambda: os.environ.get("TEST_PATH", "")
+    "-t", "--test_set", prompt=False,
+    default=lambda: os.environ.get("TEST_PATH", "")
 )
 @click.option("-d", "--debug", prompt=False, default=False)
-def main(servername: str, training_set: str, test_set: str, debug: bool) -> None:
+def main(servername: str, training_set: str, test_set: str,
+         debug: bool) -> None:
     """Run a Federated Learning client using flower.
 
     Parameters
@@ -233,11 +255,12 @@ def main(servername: str, training_set: str, test_set: str, debug: bool) -> None
         Flag for trigger some debug strings
     """
     print()
-    secho("Running a Federated Learning Client using Flower", bg="magenta", fg="white")
+    secho("Running a Federated Learning Client using Flower",
+          bg="magenta", fg="white")
     print()
     secho("Using servername:port = {}".format(servername), fg="green")
 
-    ax, lines = [], []  # set_plot(10, test_set)
+    # ax, lines = [], []  # set_plot(10, test_set)
 
     # Load data
     trainloader, testloader = har.load_data(test_set, training_set)
@@ -256,23 +279,31 @@ def main(servername: str, training_set: str, test_set: str, debug: bool) -> None
             print()
         except KeyError as err:
             secho(f"No hostname specified - {err}", bg="red", fg="white")
-        input("Press Enter to continue...")
+        if debug:
+            input("Press Enter to continue...")
         break
 
 
 def set_plot(number_of_rounds, title):
     """Set simple plot for accuracy vs round."""
     plt.ion()
-    fig, ax = plt.subplots()
-    ax.set_title(title)
-    ax.set_ylim(0, 100)
-    ax.set_xlabel(r"Round #")
-    ax.set_ylabel(r"Accuracy %")
-    (lines,) = ax.plot([None, None], "-bo")
+    fig, ax1 = plt.subplots()
+    ax1.set_title(title)
+    ax1.set_ylim(0, 100)
+    ax1.set_xlabel(r"Round #")
+    ax1.set_ylabel(r"Accuracy %")
+    (lines1,) = ax1.plot([None, None], "-bo")
     # tweak axis
-    ax.set_xlim(1, number_of_rounds)
-    ax.xaxis.get_major_locator().set_params(integer=True)
-    return (ax, lines)
+    ax1.set_xlim(1, number_of_rounds)
+    ax1.xaxis.get_major_locator().set_params(integer=True)
+    # second axis
+    ax2 = ax1.twinx()
+    ax2.yaxis.set_label_position("right")
+    ax2.yaxis.tick_right()
+    ax2.set_ylim(0, 2)
+    ax2.set_ylabel(r"Loss")
+    (lines2,) = ax2.plot([0, 0], "-ro")
+    return ([ax1, ax2], [lines1, lines2])
 
 
 if __name__ == "__main__":

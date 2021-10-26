@@ -1,14 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-"""har-server.py script runs a Federated Learning server using flower.
+"""harserver.py script runs a Federated Learning server using flower.
 
 The script can be run in command line:
 
 Examples:
 ---------
-    $./har-server.py - s 0.0.0.0:8080
+    $./harserver.py - s 0.0.0.0:8080
 or
-    $python har-server.py -s [::]:8080
+    $python harserver.py -s [::]:8080
 using environment variable HAR_SERVER
     $HAR_SERVER=[::]:8080 python har-server.py -m 2 -M 2 -r3
 
@@ -91,8 +91,8 @@ def run_server(servername: str, min_fit_clients: int,
     Model_dict = model.to_string()
     print(Model_dict)
     # tweak axis
-    ax.set_xlim(1, number_of_rounds)
-    ax.xaxis.get_major_locator().set_params(integer=True)
+    ax[0].set_xlim(1, number_of_rounds)
+    ax[0].xaxis.get_major_locator().set_params(integer=True)
     if debug:
         print(model.state_dict()['linear_relu_stack.Linear3.weight'])
     try:
@@ -210,9 +210,12 @@ def get_eval_fn(model: object,
         secho("Testing model on server side", bg="yellow", fg="black")
         test_loss, accuracy = har.test(model, testloader, "cpu")
         round_counter += 1
-        lines.set_data(np.append(lines.get_xdata(), round_counter),
-                       np.append(lines.get_ydata(), accuracy))
-        lines.figure.canvas.flush_events()
+        lines[0].set_data(np.append(lines[0].get_xdata(), round_counter),
+                          np.append(lines[0].get_ydata(), accuracy))
+        lines[0].figure.canvas.flush_events()
+        lines[1].set_data(np.append(lines[1].get_xdata(), round_counter),
+                          np.append(lines[1].get_ydata(), test_loss))
+        lines[1].figure.canvas.flush_events()
     # save the model
     torch.save(model.state_dict(), "model.pt")
     return evaluate
@@ -224,10 +227,20 @@ if __name__ == "__main__":
     global ax
     plt.ion()
 
-    fig, ax = plt.subplots()
-    ax.set_ylim(0, 100)
-    ax.set_xlabel(r"Round #")
-    ax.set_ylabel(r"Accuracy %")
-    lines, = ax.plot([0, 0], "-bo")
+    fig, ax1 = plt.subplots()
+    ax1.set_ylim(0, 100)
+    ax1.set_xlabel(r"Round #")
+    ax1.set_ylabel(r"Accuracy %")
+    lines1, = ax1.plot([0, 0], "-bo")
+
+    ax2 = ax1.twinx()
+    ax2.yaxis.set_label_position("right")
+    ax2.yaxis.tick_right()
+    ax2.set_ylim(0, 2)
+    ax2.set_ylabel(r"Loss")
+    lines2, = ax2.plot([0, 0], "-ro")
+
+    ax = [ax1, ax2]
+    lines = [lines1, lines2]
 
     run_server()

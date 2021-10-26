@@ -1,20 +1,20 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-r"""har-client.py script runs a Federated Learning client using flower.
+r"""harclient.py script runs a Federated Learning client using flower.
 
 The script can be run in command line:
 
 Examples:
 ---------
-    $./har-client.py -s localhost:8080
+    $./harclient.py -s localhost:8080
         -T../../OUTPUT/2\ -\ ONS/train/2_ALL_train.csv
         -t../../OUTPUT/2\ -\ ONS/test/2_ALL_test.csv
 or
-    $python har-client.py -s localhost:8080
+    $python harclient.py -s localhost:8080
         -T../../OUTPUT/2\ -\ ONS/train/2_ALL_train.csv
         -t../../OUTPUT/2\ -\ ONS/test/2_ALL_test.csv
 using environment variable HAR_SERVER
-    $HAR_SERVER=[::]:8080 python har-client.py
+    $HAR_SERVER=[::]:8080 python harclient.py
             -T../../OUTPUT/2\ -\ ONS/train/2_ALL_train.csv
             -t../../OUTPUT/2\ -\ ONS/test/2_ALL_test.csv
 
