@@ -27,7 +27,7 @@ tmux split-window -h -t "$1"
 
 
 tmux send-keys -t "$1":0.0 "./har-server.py -s [::]:8080 -m 4 -M 4 -r$2 -T../../OUTPUT/3\ -\ STATCAN/train/3_ALL_train.csv -t../../OUTPUT/3\ -\ STATCAN/test/3_ALL_test.csv -d$3" C-m
-sleep 1
+sleep 3
 tmux send-keys -t "$1":0.1 "export FLWR_TXSESSION=$1" C-m
 tmux send-keys -t "$1":0.1 "./har-client.py -s localhost:8080 -T../../OUTPUT/0\ -\ CBS/train/0_ALL_train.csv -t../../OUTPUT/0\ -\ CBS/test/0_ALL_test.csv -d$3" C-m
 tmux send-keys -t "$1":0.2 "./har-client.py -s localhost:8080 -T../../OUTPUT/1\ -\ ISTAT/train/1_ALL_train.csv -t../../OUTPUT/1\ -\ ISTAT/test/1_ALL_test.csv -d$3" C-m
