@@ -1,4 +1,0 @@
-#!/bin/bash
-NUMBER_OF_CLIENTS="$1"
-
-for ((CLIENT=1; CLIENT<=$NUMBER_OF_CLIENTS;i++))
