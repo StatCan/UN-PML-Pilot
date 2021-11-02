@@ -35,30 +35,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import har
 import time
-import logging
-import json
-
-#Log accuracy and execution times separately
-accuracy_logger = logging.getLogger('Accuracy Log')
-time_logger = logging.getLogger('Time Log')
-accuracy_logger.setLevel(logging.INFO)
-time_logger.setLevel(logging.INFO)
-
-acc_fh = logging.FileHandler('accuracy.log')
-acc_fh.setLevel(logging.INFO)
-
-time_fh = logging.FileHandler('time.log')
-time_fh.setLevel(logging.INFO)
-
-formatter = logging.Formatter('%(message)s')
-acc_fh.setFormatter(formatter)
-time_fh.setFormatter(formatter)
-
-accuracy_logger.addHandler(acc_fh)
-time_logger.addHandler(time_fh)
-
-time_logger.info("Rounds;Epochs;Time")
-accuracy_logger.info("Rounds;Epochs;Accuracy")
+from logger import accuracy_logger, time_logger
 
 
 def run_server(servername: str, min_fit_clients: int,

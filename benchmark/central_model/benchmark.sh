@@ -1,0 +1,14 @@
+MAX_NUMBER_OF_CLIENTS="$1"
+BENCHMARK_RUN_NAME="$2"
+
+echo "Running benchmark $BENCHMARK_RUN_NAME for number of clients with max $MAX_NUMBER_OF_CLIENTS clients"
+
+for ((NUMBER_OF_CLIENTS=8; NUMBER_OF_CLIENTS<=MAX_NUMBER_OF_CLIENTS;NUMBER_OF_CLIENTS++))
+do
+    echo "Launching run with $NUMBER_OF_CLIENTS clients"
+    BENCHMARK_ITERATION_NAME="${BENCHMARK_RUN_NAME}_${NUMBER_OF_CLIENTS}"
+    bash launch_benchmark_run.sh $NUMBER_OF_CLIENTS $BENCHMARK_ITERATION_NAME
+    tmux kill-session -t $BENCHMARK_ITERATION_NAME
+done
+
+

@@ -18,17 +18,17 @@ import time
 @click.option('-d', '--debug', prompt=False,
               default=False)
 @click.option('--min_epochs', prompt=False, 
-              default=5)
+              default=10)
 @click.option('--max_epochs', prompt=False, 
-              default=15)
+              default=80)
 @click.option('--epoch_interval', prompt=False,
-              default=1)
+              default=10)
 @click.option('--min_rounds', prompt=False, 
               default=1)
 @click.option('--max_rounds', prompt=False, 
-              default=10)
+              default=25)
 @click.option('--round_interval', prompt=False, 
-              default=2)
+              default=4)
 def benchmark_client(servername: str,
                      training_set: str,
                      test_set: str,
@@ -44,7 +44,7 @@ def benchmark_client(servername: str,
     while True:
         no_of_rounds = min_rounds  # just for matching number of iterations with server  
         while True:
-            print(f"Running client with {no_of_rounds} rounds and {no_of_epochs}")
+            print(f"Running client with {no_of_rounds} rounds and {no_of_epochs} epochs")
             run_client(servername = servername,
                        training_set = training_set,
                        test_set = test_set,

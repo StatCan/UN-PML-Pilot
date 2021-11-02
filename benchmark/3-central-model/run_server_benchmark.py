@@ -1,11 +1,12 @@
 #!/usr/bin/env python
 
 #Run from command line with e.g.
-# ./run_server_benchmark.py -s [::]:8080 -m 2 -M 2 -T../OUTPUT/3\ -\ STATCAN/train/3_ALL_train.csv -t../OUTPUT/3\ -\ STATCAN/test/3_ALL_test.csv
+# ./run_server_benchmark.py -s [::]:8080 -m 2 -M 2 -T../../OUTPUT/3\ -\ STATCAN/train/3_ALL_train.csv -t../../OUTPUT/3\ -\ STATCAN/test/3_ALL_test.csv
 #Then run run_client_benchmark.py 
 from har_server import run_server
 import click
 import os
+from logger import accuracy_logger, time_logger
 
 @click.command()
 @click.option('-s', '--servername', prompt=False,
@@ -23,13 +24,13 @@ import os
 @click.option('--min_epochs', prompt=False, 
               default=10)
 @click.option('--max_epochs', prompt=False, 
-              default=30)
+              default=80)
 @click.option('--epoch_interval', prompt=False,
-              default=5)
+              default=10)
 @click.option('--min_rounds', prompt=False, 
               default=1)
 @click.option('--max_rounds', prompt=False, 
-              default=10)
+              default=25)
 @click.option('--round_interval', prompt=False, 
               default=4)
 def benchmark_server(servername: str,
@@ -44,11 +45,26 @@ def benchmark_server(servername: str,
                      min_rounds: int = 5,
                      max_rounds: int = 15,
                      round_interval: int = 3):
+    #Logging Benchmark Setup
+    logmessage = f"Benchmark results with parameters: \n \
+                            {min_fit_clients} fit clients\n \
+                            {min_available_clients} available clients \n\
+                            {min_epochs} min_epochs\n \
+                            {max_epochs} max_epochs\n \
+                            {epoch_interval} epoch interval\n \
+                            {min_rounds} min_epochs\n \
+                            {max_rounds} max_epochs\n \
+                            {epoch_interval} epoch interval\n "
+    accuracy_logger.info(logmessage)
+    time_logger.info(logmessage)
+    time_logger.info("Rounds;Epochs;Time")
+    accuracy_logger.info("Rounds;Epochs;Accuracy") 
+    #Start Benchmark
     no_of_epochs = min_epochs
     while True:
         no_of_rounds = min_rounds    
         while True:
-            print(f"Running server with {no_of_rounds} rounds and {no_of_epochs}")
+            print(f"Running server with {no_of_rounds} rounds and {no_of_epochs} epochs")
             global round_counter
             round_counter = 0
             run_server(servername = servername,
