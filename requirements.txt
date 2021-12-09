@@ -1,0 +1,11 @@
+# requirements
+numpy >= 1.18.0
+pandas >= 1.2.4
+matplotlib >= 3.4.0
+torch >= 1.8.0
+torchvision >= 0.10.0
+click >= 8.0.0
+flwr >= 0.17.0
+phe >= 1.4.0
+
+
