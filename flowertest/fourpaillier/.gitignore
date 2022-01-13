@@ -10,6 +10,8 @@
 !harclient.py
 !README.md
 !launch-test.sh
+!launch-server.sh
+!launch-clients.sh
 !flower-phe.gif
 !simplephe
 !results.png

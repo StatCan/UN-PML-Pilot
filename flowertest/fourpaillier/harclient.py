@@ -98,7 +98,8 @@ class HARClient(fl.client.NumPyClient):
         secho("Calling get_parameters", fg="yellow")
         encrypted_parameters = []
         for n, (name, val) in enumerate(self.model.state_dict().items()):
-            if n % 2 != 0 or n == 4:
+            #if n % 2 != 0 or n == 4:
+            if n == 5:
                 secho(f"Encrypting {name} {val.cpu().numpy().shape}",
                       fg="yellow")
                 enc_ndarray = (

@@ -265,9 +265,13 @@ def load_data(
 
         x_train = pd.concat([trainingset[str(i)] for i in range(561)], axis=1)
         y_train = trainingset["Y"] - 1
+        x_train = x_train[0:1000]
+        y_train = y_train[0:1000]
 
         x_test = pd.concat([testset[str(i)] for i in range(561)], axis=1)
         y_test = testset["Y"] - 1
+        x_test = x_test[0:200]
+        y_test = y_test[0:200]
     else:
         if not os.path.isdir("data"):
             # check if file was deflated
@@ -341,7 +345,7 @@ def train(model, dataloader, epochs, device) -> None:
         CPU or GPU
     """
     loss_fn = nn.CrossEntropyLoss()
-    optimizer = torch.optim.SGD(model.parameters(), lr=1e-3)
+    optimizer = torch.optim.SGD(model.parameters(), lr=5e-3)
 
     size = len(dataloader.dataset)
     print(f"Training {epochs} epoch(s) w/ {size} batches each")
