@@ -1,0 +1,9 @@
+# .gitignore 
+
+# Ignore all files in this dir...
+*
+**/*.ipynb_checkpoints/
+
+# Except for these...
+!.gitignore
+!student_perf.ipynb

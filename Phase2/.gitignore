@@ -1,0 +1,11 @@
+# .gitignore 
+
+# Ignore all files in this dir...
+*
+**/*.ipynb_checkpoints/
+
+# Except for these...
+!.gitignore
+!README.md
+!docs
+!notebooks
