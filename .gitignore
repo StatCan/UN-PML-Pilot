@@ -1,1 +1,13 @@
-UN-PML-Pilot.code-workspace
+#Ignore universe
+*
+#Except these
+!.gitignore
+!docker
+!notebooks
+!docs
+!data
+!src
+!CONTRIBUTING.md
+!LICENSE.md
+!README.md
+!SECURITY.md

@@ -1,0 +1,10 @@
+#Ignore universe
+*
+#Except these
+!.gitignore
+!README.md
+!client
+!server
+!HE
+!models
+
