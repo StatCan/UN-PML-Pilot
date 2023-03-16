@@ -1,0 +1,6 @@
+#Ignore universe
+*
+#Except these
+!.gitignore
+!README.md
+!flower
