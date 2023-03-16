@@ -4,6 +4,14 @@
 
 This is a repo for the UN Private Machine Learning pilot project.
 
+### Structure of the repo
+
+To be completed.
+
+### Legacy
+
+Past experiments are kept there.
+
 ### How to Contribute
 
 See [CONTRIBUTING.md](CONTRIBUTING.md)

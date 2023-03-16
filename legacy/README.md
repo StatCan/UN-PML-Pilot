@@ -4,6 +4,8 @@
 
 This is a repo for the UN Private Machine Learning pilot project.
 
+This will be updated to explain the experiments on phase 1 and 2.
+
 ### How to Contribute
 
 See [CONTRIBUTING.md](CONTRIBUTING.md)
